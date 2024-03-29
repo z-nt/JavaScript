@@ -1,93 +1,93 @@
 
-const numbers = [ 1,2,3,4,5,6,7,8,9];
+// const numbers = [ 1,2,3,4,5,6,7,8,9];
 
-function getMinNumbers(arr){
-    var temp = arr[0];
-    for(var i = 0 ; i < arr.length ; i++){
-            if(temp < arr[i]) arr[i] = temp;
-    }
-    console.log(temp);
-}
-//getMinNumbers(numbers);
+// function getMinNumbers(arr){
+//     var temp = arr[0];
+//     for(var i = 0 ; i < arr.length ; i++){
+//             if(temp < arr[i]) arr[i] = temp;
+//     }
+//     console.log(temp);
+// }
+// //getMinNumbers(numbers);
 
-function getMaxnumbers(arr){
-    var temp = arr[0];
-    for(var i = 0 ; i < arr.length ; i++){
-        if(temp < arr[i]) temp = arr[i];
-    }
-    console.log(temp);
-}
-//getMaxnumbers(numbers);
+// function getMaxnumbers(arr){
+//     var temp = arr[0];
+//     for(var i = 0 ; i < arr.length ; i++){
+//         if(temp < arr[i]) temp = arr[i];
+//     }
+//     console.log(temp);
+// }
+// //getMaxnumbers(numbers);
 
-const myString = "i am kian nosratian this is my test string";
+// const myString = "i am kian nosratian this is my test string";
 
-function countstring(arr,word){
-    var  count = 0;
-    for(var i = 0 ; i < arr.length ; i++){
-        if(arr[i] == word) count++;
-    }
-    console.log(count);
-}
+// function countstring(arr,word){
+//     var  count = 0;
+//     for(var i = 0 ; i < arr.length ; i++){
+//         if(arr[i] == word) count++;
+//     }
+//     console.log(count);
+// }
 
-//countstring(myString,"i");
+// //countstring(myString,"i");
 
-function fibo(fib){
-    var temp1 = 1;
-    var temp2 = 2;
-    var fibo = 0;
-    for(var i = 0 ; i < fib; i++){
-        fibo = temp2 + temp1;
-        temp1 = temp2;
-        temp2 = fibo
-    }
-    console.log(fibo);
-}
+// function fibo(fib){
+//     var temp1 = 1;
+//     var temp2 = 2;
+//     var fibo = 0;
+//     for(var i = 0 ; i < fib; i++){
+//         fibo = temp2 + temp1;
+//         temp1 = temp2;
+//         temp2 = fibo
+//     }
+//     console.log(fibo);
+// }
 
-///fibo(8);
+// ///fibo(8);
 
-function converF_To_c(startStep,endStep,step,C){
-    var C;
-    var F;
-    var startStep,endStep,step;
-    for(C = startStep; C<= endStep; C+=step ){
-        F = (C * 1.8) + 35;
-        console.log(C,F);
-    }
-}
+// function converF_To_c(startStep,endStep,step,C){
+//     var C;
+//     var F;
+//     var startStep,endStep,step;
+//     for(C = startStep; C<= endStep; C+=step ){
+//         F = (C * 1.8) + 35;
+//         console.log(C,F);
+//     }
+// }
 
-//converF_To_c(10,20,1,40);
+// //converF_To_c(10,20,1,40);
 
 
-function calculator(x,y,opt){
-    if(opt == "+") return x + y;
-    if(opt == "-") return x -y;
-    if(opt == "x") return x * y;
-}
-//calculator(5,6,"+");
-function rockPaper(x,y){
-    var user = 0;
-    var computer= 0;
-    var winner =3;
+// function calculator(x,y,opt){
+//     if(opt == "+") return x + y;
+//     if(opt == "-") return x -y;
+//     if(opt == "x") return x * y;
+// }
+// //calculator(5,6,"+");
+// function rockPaper(x,y){
+//     var user = 0;
+//     var computer= 0;
+//     var winner =3;
     
-    while(winner){
+//     while(winner){
     
-    if(x==y) return false;
-    if(x == "paper" && y == "rock") user++;
-    if(x== "rock" && y == "paper") computer++;
-    if(user == winner) console.log("user winn");
-    if(computer == winner) console.log("coumputer winn");
-    }
-    }
+//     if(x==y) return false;
+//     if(x == "paper" && y == "rock") user++;
+//     if(x== "rock" && y == "paper") computer++;
+//     if(user == winner) console.log("user winn");
+//     if(computer == winner) console.log("coumputer winn");
+//     }
+//     }
 
-//rockPaper("paper","rock");
+// //rockPaper("paper","rock");
 
-class Machine{
-    counstructor(name,model,color){
-        this.name = name;
-        this.model = model;
-        this.color = color;
-    }
-}
+// class Machine{
+//     counstructor(name,model,color){
+//         this.name = name;
+//         this.model = model;
+//         this.color = color;
+//     }
+// }
 //const ford = new Machine("ford","1996","gray");
 
 // const Person = {
@@ -169,14 +169,18 @@ class Machine{
 // }
 // console.log(word);
 
-const https = new XMLHttpRequest();
-https.onload = function(){
-    console.log(this.responseText);
-    const myObject = JSON.parse(this.responseText);
-    document.getElementById("demo").innerHTML = myObject.name;
-}
-https.open("GET","kian.txt");
-https.send();
+
+
+// const tthps = new XMLHttpRequest();
+// https.onload = function(){
+
+//     console.log(this.responseText);
+//     console.log("sdgag ");
+//     const myObject = JSON.parse(this.responseText);
+//     document.getElementById("demo").innerHTML = myObject.name;
+// }
+// https.open("GET","http://localhost:8080/kian");
+// https.send();
 
 
 

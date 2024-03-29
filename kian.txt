@@ -1,7 +1,0 @@
-{
-    "person":{
-        "name":"kian",
-        "age":25,
-        "work":"programer",
-    }
-}
