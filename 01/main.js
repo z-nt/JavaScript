@@ -1,15 +1,13 @@
 //const { json } = require("express");
-
+import data from './main.json' assert { type: 'json' };
 
 var submit = document.getElementById("submit")
 
 
-submit.addEventListener("click",()=>{
+submit.addEventListener("click",(e)=>{
+    e.preventDefault();
     senduserInfo();
 })
-
-
-
 
 function senduserInfo(){
     const person = {
@@ -18,7 +16,11 @@ function senduserInfo(){
     }
     let userinputName = document.getElementById("nameinput").value
     let userinputWork = document.getElementById("workinput").value
-   
+    if(userinputName == data.name && userinputWork == data.work){
+        console.log("true");
+    }else{
+        console.log("false");
+    }
 
     person.name = userinputName;
     person.work = userinputWork;
@@ -30,20 +32,27 @@ function getUserinfo(){
 
     let userNameTitle = document.getElementById("userName");
     let userworkTitle = document.getElementById("userwork");
+    
+    
+    
     let titleElemtn = document.getElementById("title");
+    
+    
     
     let newUserName = document.createElement("h1");
     let newUserwork = document.createElement("h1");
-
+    
+    
     const user = localStorage.getItem("users");
     const object = JSON.parse(user);
 
     newUserName.innerHTML = object.name;
     newUserwork.innerHTML = object.work;
-    titleElemtn.appendChild(newUserName);
-    titleElemtn.appendChild(newUserwork);
-
+    userNameTitle.innerHTML = object.name;
+    userworkTitle.innerHTML = object.work;
     
+    titleElemtn.appendChild(newUserName);
+    titleElemtn.appendChild(newUserwork);    
 }
 
 

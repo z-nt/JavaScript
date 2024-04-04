@@ -1,8 +1,5 @@
 {
-    "Benutzer":[
-      {
-          "site": "GeeksforGeeks",
-          "Benutzer": "Shobhit"
-      }
-    ]
-  }
+    "name":"kian",
+    "age":26,
+    "work":"programmer"
+}
