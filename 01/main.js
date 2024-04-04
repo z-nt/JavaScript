@@ -1,3 +1,64 @@
+//const { json } = require("express");
+
+
+var submit = document.getElementById("submit")
+
+
+submit.addEventListener("click",()=>{
+    senduserInfo();
+})
+
+
+
+
+function senduserInfo(){
+    const person = {
+    name : null,
+    work:null
+    }
+    let userinputName = document.getElementById("nameinput").value
+    let userinputWork = document.getElementById("workinput").value
+   
+
+    person.name = userinputName;
+    person.work = userinputWork;
+
+    localStorage.setItem("users",JSON.stringify(person));
+    getUserinfo();
+}
+function getUserinfo(){
+
+    let userNameTitle = document.getElementById("userName");
+    let userworkTitle = document.getElementById("userwork");
+    let titleElemtn = document.getElementById("title");
+    
+    let newUserName = document.createElement("h1");
+    let newUserwork = document.createElement("h1");
+
+    const user = localStorage.getItem("users");
+    const object = JSON.parse(user);
+
+    newUserName.innerHTML = object.name;
+    newUserwork.innerHTML = object.work;
+    titleElemtn.appendChild(newUserName);
+    titleElemtn.appendChild(newUserwork);
+
+    
+}
+
+
+
+
+// localStorage.setItem("user",JSON.stringify(person));
+
+// const user = localStorage.getItem("user");
+
+// const object = JSON.parse(user);
+// console.log(object);
+
+
+
+
 
 // const numbers = [ 1,2,3,4,5,6,7,8,9];
 

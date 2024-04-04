@@ -3,14 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
     <title>Document</title>
 </head>
 <body>
     <p id="demo"></p>
+        <div class="container">
+            <div class="title" id="title">
+                userName: <h1 id="userName"></h1>
+                <br/>
+                userwork: <h1 id="userwork"></h1>
+            </div>
+            <form action="#">
+                <label for="nameinput">enterName</label>
+                <input type="text" name="userinput" id="nameinput">
+                
+                <label for="workinput">enterwork</label>
+                <input type="text" name="userwork" id="workinput">
+        
+                <input type="submit" value="submit" id="submit">
+            </form>
+       
+       
+        </div>
+       
+      
 
-
+    <script src="./main.js"></script>
+<!-- 
     <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
-    <script type="module"  src="./req.js"></script>
+    <script type="module"  src="./req.js"></script> -->
     
 </body>
 </html>
