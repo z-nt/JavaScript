@@ -30,28 +30,13 @@ async function main(){
     })
 }
  
+let https =  new XMLHttpRequest();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+https.onload = function(){
+    console.log(this.responseText);
+}
+https.open("GET","users.json",true);
+https.send();
 
 
 // function getUsers(){
