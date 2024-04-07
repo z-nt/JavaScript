@@ -8,19 +8,31 @@
 </head>
 <body>
         <div id="root">
-            <div id="demo">
-                
+            <form  method="/" id="Login">
 
-            </div>
-            <fieldset>
-                <legend>Retrieve a usres ..</legend>
-                <input type="text" id="username" placeholder="username">
-                <button onclick="main()" type="button" id="btn"> show</button>
-            </fieldset>
+                <h4>ثبت نام</h4>
+                
+                <fieldset>
+                    <legend>نام کاربری</legend>
+                    <input  class="inputs"  type="text" id="username" placeholder="username">
+                </fieldset>
+
+                <fieldset>
+                    <legend>شماره تلفن</legend>
+                    <input  class="inputs" type="text" id="phonenumber" placeholder="phoneNumber">
+                </fieldset>
+
+                <fieldset>
+                    <legend>پسورد</legend>
+                    <input class="inputs"  type="text" id="password" placeholder="password">
+                </fieldset>
+
+                    <input  type="submit" id="submit" value="ثبت نام">
+            </form>
         </div>
     
 
 
-    <script src="./main.js"></script>
+    <script type="module" src="./main.js"></script>
 </body>
 </html>

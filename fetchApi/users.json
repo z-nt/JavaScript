@@ -1,20 +1,16 @@
-[      
-    {
-        "username" :"kian",
-        "fristname":"Kian",
-        "lastname" :"Nosratian",
-        "gender"   :"Male",
-        "profileURL":"img/kian.png",
-        "email"    :"kiannosratian76@gmail.com"
-
+{      
+   "users":[ {
+        "name" :"kian",
+        "number":"09029076303",
+        "pass" :3055976
     },      
+    
     {
-        "username" :"erfan",
-        "fristname":"Erfan",
-        "lastname" :"Rostami",
-        "gender"   :"Male",
-        "profileURL":"img/erfan.png",
-        "email"    :"erfanrostami73@gmail.com"
-
+        "name" :"erfan",
+        "number":"09393948698",
+        "pass" :2148
     }
-]
+
+
+    ]
+}

@@ -1,42 +1,85 @@
-async function main(){
-    const userName = document.getElementById("username").value;
-    const para = document.getElementById("demo");
-    const endPoint = "./users.json";
-    
-    fetch(endPoint)
-    .then(res=>{
-        return res.json();
-    })
+import "./form.js";
+import SendUser from "./form.js";
 
-    .then(post=>{
-        post.forEach(element => {
-                if(userName == element.username){
-                    para.innerHTML=`
-                    <h4>Name:${element.fristname}   </h4>
-                    <h4>LastName:${element.lastname}</h4>
-                    <h4>gender:${element.gender}    </h4>
-                    <h4>Email:${element.email}      </h4>
-                      `;
-                }else{
-                    console.log("users not found");
-                }
-        });
-    })
+
+
+
+ const submit = document.getElementById("submit");
+ 
+ function checkUser (person){ 
+     
+    const http = new XMLHttpRequest();
+    const data = "./users.json";
+
+     http.onload = function(){
+         const userProfil = this.response;
+         const newObject = JSON.parse(userProfil);
+        newObject.users.push(person);
+    }
+
+     http.open("GET",data,true);
+     http.send();
+
+}
+
+submit.addEventListener("click",()=>{
+    
+    SendUser();
+    
+    const newObject = localStorage.getItem("users");
+    
+    const person = JSON.parse(newObject);
+    
+    checkUser(person);
+    
+})
+
+
+
+
+
+
+
+
+// async function main(){
+//     const userName = document.getElementById("username").value;
+//     const para = document.getElementById("demo");
+//     const endPoint = "./users.json";
+    
+//     fetch(endPoint)
+//     .then(res=>{
+//         return res.json();
+//     })
+
+//     .then(post=>{
+//         post.forEach(element => {
+//                 if(userName == element.username){
+//                     para.innerHTML=`
+//                     <h4>Name:${element.fristname}   </h4>
+//                     <h4>LastName:${element.lastname}</h4>
+//                     <h4>gender:${element.gender}    </h4>
+//                     <h4>Email:${element.email}      </h4>
+//                       `;
+//                 }else{
+//                     console.log("users not found");
+//                 }
+//         });
+//     })
 
   
 
-    .catch(err=>{
-        console.log("faile");
-    })
-}
+//     .catch(err=>{
+//         console.log("faile");
+//     })
+// }
  
-let https =  new XMLHttpRequest();
+// let https =  new XMLHttpRequest();
 
-https.onload = function(){
-    console.log(this.responseText);
-}
-https.open("GET","users.json",true);
-https.send();
+// https.onload = function(){
+//     console.log(this.responseText);
+// }
+// https.open("GET","users.json",true);
+// https.send();
 
 
 // function getUsers(){
