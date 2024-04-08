@@ -10,7 +10,7 @@ function GetUsers(){
             return false;
         }else{
             item.style.border = "1px solid green";
-           // window.open("./singup.html"); 
+            window.open("./singup.html"); 
         }
     })
 
