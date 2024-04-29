@@ -14,7 +14,6 @@ $body-background:#cac6c6;
 $list-style:none;
 
 %userlistItem{
-    border: $border;
     list-style-type: none;
     font-size: 1rem;
     height: 2rem;
@@ -85,13 +84,11 @@ $list-style:none;
 
 // userlist style
 .userList{
-border: $border;
 width: 40%;
 height: 100%;
 @extend %flex-display-wrap;
     .user{
         @extend %flex-display-cloumn;
-        border: $border;
         width: 50%;
         text-align: center;
         background-color: #cac6c6;
