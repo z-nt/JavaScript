@@ -1,0 +1,114 @@
+$border:1px solid red ;
+$input-background:#535C91;
+$font-color:#9290C3;
+$font-size:16px;
+$header-size:24px;
+$input-size-with:200px;
+$input-size-height:3rem;
+$input-border-radius:12px;
+$header-color:#070F2B;
+$programItem-color:#092635;
+$buttons-bg:#22092C;
+$button-f-color:#872341;
+$body-background:#cac6c6;
+$list-style:none;
+
+%userlistItem{
+    border: $border;
+    list-style-type: none;
+    font-size: 1rem;
+    height: 2rem;
+    text-align: left;
+    align-items: center;
+  
+}
+
+%flex-display-wrap{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+
+%flex-display-cloumn{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.container{
+    background-color: $body-background;
+   
+    width: 100%;
+    height: 100vh;
+    @extend %flex-display-wrap;
+}
+.form{
+ 
+   width: 40%;
+   height: 100%;
+   @extend %flex-display-cloumn; 
+    h1{
+        font-size: $header-size;
+        text-align: center;
+        color:$header-color;
+    }
+    label{
+        color: $font-color;
+        font-size: 2rem;
+    }
+    input{
+        border-radius: $input-border-radius;
+        width: $input-size-with;
+        height: $input-size-height;
+        outline: none;
+        background-color: $input-background;
+    }
+
+    #submit{
+        background-color: $buttons-bg;
+        color: $button-f-color;
+        border: none;
+    }
+}
+
+
+
+
+// userlist style
+.userList{
+border: $border;
+width: 40%;
+height: 100%;
+@extend %flex-display-wrap;
+    .user{
+        @extend %flex-display-cloumn;
+        border: $border;
+        width: 50%;
+        text-align: center;
+        background-color: #cac6c6;
+        justify-content: flex-start;
+       li{
+        @extend %userlistItem;
+        margin-top: 1rem;
+       }
+        h1{
+            color: $header-color;
+            font-size: $header-size;
+        }
+    }
+
+
+
+
+
+
+}
