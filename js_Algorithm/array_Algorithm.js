@@ -203,28 +203,6 @@ console.log(result);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ///find minimum and maximum number in array;
 function findminimumnumber(arr){
     let temp = arr[0];
@@ -244,4 +222,5 @@ function findMaxNumber(arr){
     console.log(temp);
     return temp;
 }
+///array algorithm is done now
 
