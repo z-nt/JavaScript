@@ -167,6 +167,10 @@ registred symbols , a value in the weakset may only occur once,it is unique in t
 
 
 
+	/* JAVASCRITS  DATA TYPES AND DATA STRUCTURE */
+
+
+
 
 
 
