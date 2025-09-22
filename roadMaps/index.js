@@ -54,7 +54,7 @@
 //	*the iteration of maps is in insertion order of the elements,
 //	*an object has a prototype, so there are default keys in the map,
 
-/
+
 //
 //these three tips can help you to decide whether to use a map or an objects:
 //	
@@ -67,7 +67,7 @@
 //	--use objects when there is logic that operates on individual elements . 
 //
 //
-/
+
 
 	const saying = new Map();
 
@@ -110,7 +110,7 @@
 //	guaranteed to be unique and cannot be re-createed,
 //
 //
-/
+
 
 
 const  privets = new WeakMap();
@@ -170,11 +170,11 @@ const mySet = new Set();
 //construcor accepts an array to convert in the other direction;
 
 
-Array.from(mySet);
-[...mySet2];
+//Array.from(mySet);
+//[...mySet2];
 
 
-mySet2 = new Set([1,2,3,4,5,6]);
+//mySet2 = new Set([1,2,3,4,5,6]);
 
 
 
@@ -212,9 +212,45 @@ mySet2 = new Set([1,2,3,4,5,6]);
 //
 //
 //	/* JAVASCRITS  DATA TYPES AND DATA STRUCTURE */
+
 //
+//	programming language all have built-in data structure , but these often differ from one language to 
+//	another.thic article attemps to list the built-in data structures available in java script and what 
+//	properties they have , these can be used to build other data structure .
 //
-//
+
+
+
+
+//	/* DYNAMIC AND WEAK TYPING */
+	
+//	javascript is a dynamic language with dynamic types . variables in javascript are not directly
+//	associated with any particular value type,and any variable can be assigned values of all types:
+
+
+	let foo = 42;
+	foo="bar";
+	foo=true;
+
+
+//	javaScript is also a weakly typed language . which means it allows implicit type conversion when 
+//	an operation involves mismatched types.instead of throwing type errors.
+	
+
+	const foo2 = 42 ;
+	const result = foo2 + "1";
+	console.log(typeof result);
+
+
+
+
+
+
+
+
+
+
+
 
 
 
