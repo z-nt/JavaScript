@@ -144,25 +144,25 @@ const  privets = new WeakMap();
 
 
 
-const mySet = new Set();
-
-	mySet.add(1);
-	mySet.add("someText");
-	mySet.add("foo");
-
-
-	let hasIt = mySet.has(1);
-	let setSize = mySet.size;
-	console.log(`${setSize}`);
-//	mySet.delete("foo");
-	let setSize2 = mySet.size;
-	console.log(`${setSize2}`);
-
-	for (const item of mySet){
-		console.log(`item is : ${item}`)
-
-	}
-
+//const mySet = new Set();
+//
+//	mySet.add(1);
+//	mySet.add("someText");
+//	mySet.add("foo");
+//
+//
+//	let hasIt = mySet.has(1);
+//	let setSize = mySet.size;
+//	console.log(`${setSize}`);
+////	mySet.delete("foo");
+//	let setSize2 = mySet.size;
+//	console.log(`${setSize2}`);
+//
+//	for (const item of mySet){
+//		console.log(`item is : ${item}`)
+//
+//	}
+//
 //converting between arrray and set 
 
 
@@ -239,37 +239,204 @@ const mySet = new Set();
 
 	const foo2 = 42 ;
 	const result = foo2 + "1";
-	console.log(typeof result);
+//	console.log(typeof result);
+
+
+
+ 	const obj = {};
+
+	obj.prop = [0,2,1,3,5];
+
+//console.log(obj);
+
+//	ARRAY METHODS 
+
+
+// 	the concat() methods join tow or more arrays and return a new array.
+
+	let myarr = [1,2,3];
+	myarr = myarr.concat("s","b","c");
+//	console.log(myarr);
+
+
+
+// 	the join() methods join all elements of an array into a string.
+
+	let myarr2 = ["wind", "rain", "fire"];
+	let list = myarr2.join("-");
+//	console.log(list);	
+
+
+
+//	the push methods adds one or more elements to the end of an array and returns the resulting length of the array;
+
+
+	const myarr3 = [1,2,3,5];
+	myarr3.push(4);
+//	console.log(myarr3);
+
+//	the pop() methods removes the last element from an array and returns that element;
+
+	const last = myarr3.pop();
+//	console.log(last)
+
+//	the shift() methods removes the first element from an array and returns that element;
+	
+	const first = myarr3.shift();
+
+
+//	console.log(first);
+
+
+//	the unshift() methods adds one or more elements to the front of an array and returns the new length of the array.
+
+	myarr3.unshift(8,9);
+//	console.log(myarr3);
 
 
 
 
 
+//	the slice() methods extracts a section of an array and returns a new array.
+
+
+	let  myarr4 = [1,2,3,5,6,7,8,9];
+	
+	myarr4 = myarr4.slice(1,4);
+//	console.log (myarr4);
+
+//	the at() methods returns the element at the specified index in the array , or undifined if the 
+//	index is out of range . its notably used for negative indices that access elements from the end of an	     array.
+	
+	const myelements = [2,3,44,5,6,7,8];
+	myelements.at(-3);
+//	console.log(myelements.at(-3));
+
+
+//	the splice() methods removes elements from an array and replace them. it returns the items which were 	     removed from the array;
+
+
+	const mynumbers = [1,2,3,4,5,6,7,8];
+	mynumbers.splice(1,3,"a","b","c","d");
+//	console.log(mynumbers);
+
+
+//	the reverse() methods transposes the elements of an array, in place : the first array element 
+//	becomes the last and the last becomes the first.it returns a reference to the array.
+
+
+	const elem = [1,2,3];
+	elem.reverse();
+//	console.log(elem);
+
+
+//	the flat() methods returns a new array with all sub-array elements concatenated into it recursively 
+//	up to the specified depth;
+
+
+	let arrflat = [1,2,[3,4]];
+	arrflat = arrflat.flat();
+//	console.log(arrflat);
+
+//	the sort() methods sorts element of an array in place . and returns a reference to the arr;
+
+	let sortarr = [9,2,3,4,51,3,0,1];
+	sortarr.sort();
+//	console.log(sortarr);
+
+
+//	sort() can also take a callback function to determine how array elments are compared .the 
+//	callback function is called with tow arguments, which are tow values from the array.the function
+//	compares these tow values and returns a positive number, nagative number , or zero , indicating the 
+//	order of the tow values,for instance , the following will sort the array by the last letter of a string
+
+	let arr1 = [9,8,7,6,5,4,];
+	let arr2 = [0,1,22,444,5,67,7,3,2];
 
 
 
+	const sortFn = (a,b) => {
+		if(a[a.length - 1 ] < b[b.length - 1 ] ){
+			return -1;
+		}else if (a[a.length - 1 ] > b[b.length - 1 ]) {
+
+			return 1 ;
+		}
+		return 0;
+	}
 
 
 
+//	console.log(sortFn(arr1,arr2));
+
+//	the indexof() methods searches the array for searchElement and return the index of the first match;
+//	the lastIndexOf methods works like indexOf, but starts at the end and seaches backwards;
+//	const a = ["a","b","c","d","e","f","a","b","a",2,3,4,,6,6,7,8,9];
+//	console.log(a.indexOf("z"));
+//	console.log(a.lastIndexOf("b"))
+	
+
+
+//	the forEach() method execute callback on every array item and returns undifined.
+//
+//
+//	a.forEach((elem)=>{
+//		console.log(elem);
+//	});
+
+	
+//	the map method returns a new array of the return value from executing callback on every array item.
+	
+//	const a2 = a.map((item)=>item.toUpperCase());
+//	console.log(a2);
+
+//	the flatmap() method runst map() followd by a flat() of depth1;
+
+//	const a2 = a.flatMap((item)=> [item.toUpperCase(),item.toLowerCase()]);
+//	console.log(a2);
 
 
 
+//	the filter() method returns a new array containing the items for which callback returned true;
+
+	
+//	const a2 = a.filter((item) => typeof item ==="number");
+//	console.log(a2);
+
+
+//	the find() method return the first item for which callback return true;
+// 	the findLast() method returns the last item for which callback return true;
+
+
+//	const a2 = a.find((item)=> typeof item === "number");
+//	const a2 = a.findLast((item)=> typeof item ==="number");
+//	console.log(a2);
 
 
 
+//	the findIndex() method return the index of the first item for which callback return true;
+// 	the findLastIndex() method return the index of the last item for which callback reurn true;
+
+	const a = ["a","b","c","d","e","f","a","b","a",2,3,4,,6,6,7,8,9];
+//	const a2 = a.findIndex ((item)=> typeof item === "number");
+//	const a3 = a.findLastIndex((item) => typeof item === "number" );
+//	console.log(a3);
+	
+//	the every() method returns true if callback returns true for every item in the array;
+//	the some() method returns true if calllback returns true for at least one item in the arr;	
+	function isNumber(value){
+		return typeof value === "number";
+	}
+
+	const a1 = [1,2,3];
+	const a2 = [1,"2",3];
+
+	console.log(a1.some(isNumber));
+	console.log(a2.some(isNumber));
 
 
-
-
-
-
-
-
-
-
-
-
-
+//	console.log(a1.every(isNumber));
+//	console.log(a2.every(isNumber));
 
 
 
