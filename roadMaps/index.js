@@ -431,33 +431,125 @@ const  privets = new WeakMap();
 	const a1 = [1,2,3];
 	const a2 = [1,"2",3];
 
-	console.log(a1.some(isNumber));
-	console.log(a2.some(isNumber));
+//	console.log(a1.some(isNumber));
+//	console.log(a2.some(isNumber));
 
 
 //	console.log(a1.every(isNumber));
 //	console.log(a2.every(isNumber));
 
 
+//	the redauc() method applies callback(accumulator , currentvalue , currentIndex , array) for each 
+//	value in the array for the purpose of reducing the list of items down to single value . the reduce
+//	function returns the final value returned by callback function.
+//	if initialValue is specified , then callback is called with initialValue as the first parameter value	     and the value of the first item in the array as the scond parameter value.
+//	if initialValue is not specified ,then callbacks first tow parameters values will be the first and 
+//	second elements of the array.on every subsequent call , the first parameters value will be whatever
+//	callback returned on the previous call, and the second pararmeters value will be the next value in 	     the array. 
+//	if callback  needs access to the index of the item being processed , or access to the entire array,
+//	they are available as optional parameters.
+//
 
 
 
 
+	const a4 = [10,20,30];
+	const total = a.reduce(
+	
+		(accumulator , currentValue) => accumulator + currentValue,0,
+	);
+
+//	console.log(total);
 
 
 
+//	the reducRight() method works like reduce(), but starts with the last element.
+//	reduce and reduceright are the least obvious of the iterative array methods.they
+//	shoud be used for algorithms that combine two values recursivly in order to reduc
+//	a sequence down to single value.
 
 
 
+//	ARRAY TRANSFORMATION 
+//
+//	you can transform back and forth between arrays and other data structure 
+//
+//	Grouping the elements of an array 
+//
+//
+//	the object.groupBy() method can be used to group the elements of an array,
+//	using a test function that returns a string indicating the group of the 
+//	current element.
+//
+//
+
+//
+//	const inventori = [
+//
+//		{name:"kian",work:"programmer"},
+//		{name:"nima",work:"designer"},
+//		{name:"erfan",work:"lolekesh"},
+//		{name:"mobin",work:"programmer"},
+//		{name:"mammd",work:"programmer"},
+//		{name:"majid",work:"lolekesh"},
+//		{name:"poyan",work:"designer"},
+//
+//	]
+//
+//
+//	const result2 = Object.groupBy(inventori, ({work})=> work );
+//
+//	console.log(result2);
 
 
 
+//	WORKIN WITH ARRAY LIKE OBJECTS 
+//	
+//	some javascript objects,such as the nodelist returned by document.getElemetnByTagName()
+//	or the arguments object made available within the body of a function . look and behave
+//	like arrays on the surface but do not share all of their methods.the arguments object 
+//	provides a length attribute but does not implement array methods like forEach();
+//
+//
+//
+//
+
+	const names = ["kian","mobin","erfan"];
 
 
+	function getArg () {
+	  names.forEach((name) => {
+		console.log(name);
+	  })
+	}
+
+//	getArg();
 
 
-
-
-
-
-
+//	function printarg () {
+//		Array.prototype.forEach.call(names,(item) => {
+//			console.log(item);
+//		});
+//
+//		Array.prototype.forEach.call("kian",(char) => {
+//			console.log(char);
+//		});
+//
+//	}
+//
+//
+//	const a5 = new Array(4);
+//
+//
+//	for(let i = 0 ; i < 4 ; i++){
+//	    a5[i]=new Array(4);
+//		for(let j = 0 ; j < 4 ; j++){
+//		     a5[i][j]= `[${i},${j}]`;
+//		}
+//	}
+//
+//
+//
+//	console.log(a5);
+//
+	/*END OF ARRAY */
