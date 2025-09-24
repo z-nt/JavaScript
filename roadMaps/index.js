@@ -553,3 +553,81 @@ const  privets = new WeakMap();
 //	console.log(a5);
 //
 	/*END OF ARRAY */
+
+	/* THROE CATCH FINALY */
+
+
+//	the trow statement throws a user-define exception.execution of the current function will stop 
+//	(the statement after throw wont be executed), and control will be passed to the first catch block
+//	in the call stack.if no catch block exists among caller functions,the program will terminate.
+//
+
+
+	function getRectArea(width,height){
+		if(!Number(width) || !Number(height)){
+		   throw new Error ("parameter is not a number!");	
+		}else{
+			let result = width * height;
+//		  console.log(result);
+		}
+	}
+
+
+	try{
+	  getRectArea(3,2);
+	}catch(e){
+//		console.error(e);
+	}
+
+
+
+	function isNumeric(x){
+
+		return ["number","bigint"].includes(typeof x);
+
+	}
+
+	function sum (...values){
+		if(!values.every(isNumeric)){
+		   throw new TypeError("can only add numbers");
+		}
+
+		return values.reduce( (a,b) => a + b );
+	}
+
+//	console.log(sum(1,2,3));
+
+	try{
+	   sum("1","2");	
+	}catch(e){
+//	  console.error(e);
+	}
+
+
+//	THROWING AN EXISTING OBJECT
+
+//	this example calls a callback-based async-function,and throws an error if the callback recives an error
+
+	readFile("foo.txt",(err,data)=>{
+		if(err){
+		  throw err;
+		}
+		console.log(data);
+		
+	})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
