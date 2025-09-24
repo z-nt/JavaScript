@@ -608,13 +608,79 @@ const  privets = new WeakMap();
 
 //	this example calls a callback-based async-function,and throws an error if the callback recives an error
 
-	readFile("foo.txt",(err,data)=>{
-		if(err){
-		  throw err;
-		}
-		console.log(data);
+//	readFile("foo.txt",(err,data)=>{
+//		if(err){
+//		  throw err;
+//		}
+////		console.log(data);
+//		
+//	})
+//
+//
+//	function readFilePromise(path){
+//		return new Promise((resolve , data )=>{
+//		 readFile(path,(err,data)=>{
+//				if(err){
+//				  reject(err);
+//				}
+//
+//				resolve(data);
+//			});
+//		});
+//	}
+//
+//
+//	try {
+//	  const data = await readFilePromise("foo.txt");
+//		console.log(data);
+//	}catch(err) {
+//	console.error(err);
+//	}
+//
+
+///				try ...catch
+
+
+//	the try..catch statement is comprised of a try block and either a catch block,a finally
+//	block,or both. the code in the try block is executed first.and if it throws an exception
+//	the code in catch block will be executed. the code in the finally block will always be
+//	executed befor control flow exits the entire construct;
+//
+//
+//	try{
+//	  throw "oops;this is test"; 
+//	}catch(e){
+//		if(!(e instanceof Error)){
+//		  e = new Error(e);
+//		}
+//
+//	  console.log(e.message);	
+//	}
+//
+
+	/* FUCNTIONS  */
+
+
+	 	
+
 		
-	})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
