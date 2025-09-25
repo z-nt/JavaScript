@@ -660,10 +660,188 @@ const  privets = new WeakMap();
 
 	/* FUCNTIONS  */
 
+	
+//	when you pass an objects as a parameter , if the function changes the object properties,that change 
+//	is visible outside the function.
+//	 aslo that will happend for an array;	
 
-	 	
+	function myFunc(obj,arr){
+		obj.make="toyota";
+		arr[0]=36;
+	}		
+	const arr= [45];
 
-		
+	const mycar = {
+		make:"honda",
+		model:"accord",
+		year:1998,
+	}
+
+	//console.log(mycar);
+	
+//	console.log(arr);
+	//myFunc(mycar);
+//	console.log(arr);
+	
+
+	//console.log(mycar);
+
+	//*nested
+
+	function assSquares(a,b){
+		function square(x){
+		   return x * x ;
+		}
+
+
+		return square(a) + square(b);
+	}
+
+	//function expressions 
+
+	const square = function (a,b){
+		return a * b ;
+	}
+
+//	console.log(square(2,4));
+
+//	a name can be provided with a function expression.providing a name allows the function to refer to 
+//	itself , and also makes it easier to identify the function in a debuggers stack traces ;
+
+
+
+	const factorial = function fac(n){
+		return n < 2 ? 1 : n * fac(n - 1 );
+	}
+
+
+	
+	function map (f , a ){
+		const result = new Array(a.length);
+		for (let i = 0 ; i < a.length;i++){
+			result[i] = f(a[i]);
+		}	
+
+		return result;
+	}
+
+	const numbers = [0,1,2,3,4,5];
+
+	const cubeNumberic = map (function (x){
+		return x * x * x ;
+	},numbers);
+
+
+
+	let myfunc ;
+	let num;
+
+	
+		if(num == 0 ){
+			myfunc= function(obj){
+			  obj.name="kian";
+			};
+		}
+
+
+//	console.log(cicle(5));
+
+
+	function cicle(n){
+	return n * n ;
+	}
+
+//	this  is because the javascript interpreter hoists the entire function declaration to the
+//	top of the current scope
+
+//	function hoisting only works with function declarations--- not with function expressions
+
+
+
+//	CLOSURES   
+			
+//	we also refer to the function body as a closure. a closure is any piece of source code 
+//	that refers to some variables , and the closure "remembers" these variables even when 
+//	the scope in which these variables were declared has exited.
+//
+//	closure are usually illustrated with nested function to whow that they remember variables 
+//	beyond the liftime of its parent scope ; but in fact nested functions are unnecessary.
+//	technically speacking, all functions in javascript form closures__ some just dont capture.
+//	anythin,and closures done even have to be funcitons.
+//	the key ingredients for a usful closure are the following:
+//
+//	* a parent scope that defines some variables or functions . is should have a clear lifetime,
+//	which means it should finish execution at some point. any scope thats not the global scope satifies,
+//	this requirement.this includes blocks , functions , modules , and more .
+//
+//	*an inner scope defined within the parent scope,which refers to some variables or functions
+//	defined in the parent scope.
+//
+//	*the inner scope manage to survive beyound the lifetime of the parent scope.it is saved to a 
+//	variable taths defined outside the parent scope,or its returned from the parent scope.
+//
+//	*then,when you call the function outside of the parent scope.you can still access the variable
+//	or functions that were defined in the parent scope,even though the parent scope has finished 
+//	execution.
+//
+
+
+
+	const pet = function (name){
+		const getName = function (){
+			return name;
+		}
+
+
+		return getName;
+	}
+
+
+	const my = pet("mobin");
+
+
+	
+	///function parameters 
+
+//	default parameters 
+
+
+	function multyply1 (a , b ){
+	 b = typeof b !== "undifined"  ? b : 1 ;
+		return a * b;
+	}
+
+
+	function multyply2 (a , b=1 ){
+		return a * b;
+	}
+
+
+	// rest parameters 
+
+	function multy(num,...args){
+
+	return args.map((x) => num * x )
+
+	}
+	const arra = multy(2,1,2,3);
+	console.log(arra);
+
+
+
+//	arrow function
+
+
+	const a = ["kian","nima ", "mobin"];
+
+
+	const a2 = a.map(function (s){
+		return s.length;
+	})
+
+
+	const a3 = a.map((s) => s.length);
+
 
 
 
