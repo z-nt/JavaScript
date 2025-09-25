@@ -825,30 +825,84 @@ const  privets = new WeakMap();
 
 	}
 	const arra = multy(2,1,2,3);
-	console.log(arra);
+//	console.log(arra);
 
 
 
 //	arrow function
 
 
-	const a = ["kian","nima ", "mobin"];
+//	const a = ["kian","nima ", "mobin"];
 
 
-	const a2 = a.map(function (s){
-		return s.length;
-	})
+//	const a2 = a.map(function (s){
+//		return s.length;
+//	})
 
-
-	const a3 = a.map((s) => s.length);
-
-
-
+//
+//	const a3 = a.map((s) => s.length);
 
 
 
 
 
+//		lexical enviorment
+//	
+//	var name = "kian";
+//
+//
+//	function set () {
+//		console.log(name);
+//	}
+//
+//
+//	function set1 (){
+//	  var name ="erfan";
+//		set();
+//	}
+//
+//
+//	set1();
+
+
+
+	var matrix = {
+ 	     name:"kian",
+		create:function(r,c){console.log(r,c)},
+
+		sum:function(a,b){return a + b},
+
+		diff:function (a,b) {return a - b},
+		
+		product:function (a,b) {return a * b},
+
+	}
+
+//	console.log(matrix.name);
+
+//	 matrix.create(1,2);
+
+	var matrix2 = (function() {
+		var name= "mobin";
+
+
+		function create (a,b) {console.log(a,b)};
+		function sum (a,b) {return a + b};
+		function diff (a,b) {return a - b};
+		function multy (a,b) {return a * b};
+
+		return {
+		   create:create,
+		   sum : sum,
+		   diff : diff,
+		   multy:multy
+		}
+
+	})();
+
+//	this iifE pattern provieds better encapsulation,data hiding and memory efficency compared to the,
+//	simple object literal approch.its a classic javascript module pattern that prevents pollution of ,
+//	the global namespace and protects internal implementation details,
 
 
 
@@ -861,6 +915,38 @@ const  privets = new WeakMap();
 
 
 
+
+
+
+
+
+		///higher order function 
+
+//	a function that takes in a function as argument and / or returns back a function is called,
+//	higher-order functions.
+
+	function def (n,a,d){
+		return a + n * d ;
+	}
+	
+//	to solve this issue , we could use a very simple-concep-function closurs,
+//	the trick is to create a function that takes in value for a and b once,
+//	and then returns back a function which just takes a single argument n,
+//	this returned  function remembers its lexical environments ,
+//	var a and b , and so on cloud be used to inspect any nth element of the given sequence ,
+//
+
+//	console.log(def(1,2,3));
+
+
+	function define(a,d){
+		return function (n){
+			return a + n * d; 
+		}
+	}
+
+	var evens = define(1,2);
+//	console.log(evens(1));
 
 
 
