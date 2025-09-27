@@ -949,6 +949,61 @@ const  privets = new WeakMap();
 //	console.log(evens(1));
 
 
+//
+//	what are built-in methods? 
+//
+//	a javascript method is a property containing a function definition.in other word,
+//	when the data stored on an object is a function we call that a method,to differenciate,
+//	between properties and methods:
+//	PROPERTY IS THAT AN OBJECT HAS,WHILE A METHOD IS WHAT AN OBJECT DOESE,
+//
+//	since javascript methodes are actions that can be performed on objexts,we first 
+//	need to have object to start with,
+//
+//	there are several objects built into javascript which we can use,
+//
+//	--standart built-in objects,
+//	we call or use methods by appending an instance with:
+//	.a period
+//	.the name of the method.
+//	.opening and closing parantheses
+//
+//
+//	--useful built-in methods
+//	
+
+//
+//	******DOCUMENT OBJECT MODEL (DOM)******
+//
+//
+//
+//	the document object model (dom) is the data represention of the object that comprise the 
+//	structure and content of a document on the web,
+//
+//
+//	the documnet object model is a programming interface for web documnet.it represent the page,
+//	so that programs can change the document structure , style , and content .the dom represent
+//	the document as nodes and objects that way ,programming languages can interface with the page.
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
