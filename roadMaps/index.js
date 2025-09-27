@@ -1273,6 +1273,108 @@ const  privets = new WeakMap();
 //
 //
 
+		/*FUNCTION BORROWING IN JAVASCRIPT*/
+
+//	when we create javasctip objects, we typically associate them with certain behavior.
+
+	class Dog {
+		constructor(name , age , bread) {
+			this.name = name;
+			this.age = age ;
+			this.bread = bread;
+		}
+
+		tellus(){
+			return `my name is ${this.name}. i am ${this.bread} , i am ${this.age} years old`;
+		}
+		
+		woof(){
+		    	return "woof";
+		}
+	}
+
+	let fido = new Dog ("fido",3,"duchshand");
+//	console.log(fido.tellus());
+
+
+	
+
+	class Cat {
+		constructor(name , age , bread) {
+			this.name = name;
+			this.age = age ;
+			this.bread = bread;
+		}
+
+		
+		mew(){
+		    	return "mewo";
+		}
+	}
+
+	let spark = new Cat ("spark",6,"ghaemshar");
+	
+
+	
+	//function borrowing allows us to use methods of one object on a different.
+//	object without having to make a copy of that method and maintain it in tow.
+//	seprate place.it is accomplished through the use of .call() , apply(), or bind();
+//	all of which exist to explictly set this on the method we are borrowing.
+
+
+//	console.log(fido.tellus.call(spark));
+//	console.log(fido.tellus.apply(spark));
+
+	const descspark = fido.tellus.bind(spark);
+
+//	console.log(descspark());
+//
+//
+//
+//
+//	each of these examples work because this ,when refrenced inside a method , refers to the object.
+//	that received the method call. .call() , apply() , .bind() work by allowing us to alter the object,
+//	to which this refers inside of the .tellus method, whereas call and apply immediatly execute the,
+//	function call,bind saves the function for later.
+//
+//
+//
+//
+//
+//	the centeral benefit of function borrowing is that it allows you to forego inheritance ,
+//	theres no reason for you to force a class to inherit from another if youre only doing so ,
+//	in order to grant instances of the child class access to a single method . and as i mentioned above,
+//	function borrowing keeps you from having to write the same function twice and maintain it in tow places,
+//	which reduces the risk of bugs.
+//
+//	the most important practical application of function borrowing pertains to native methods,
+//	and specifically,to array.prototype.slice  there are several list-like data structures that,
+//	arents array.and its useful ti be able to treat them as arrays and operate on them as such.
+//	one of the most prevalent list-like data structure that isnt an array is arguments. ,
+//	the arguments object represents all the parameters passed in to a given function.
+//
+//
+
+
+
+	
+	function findow () {
+		let args = Array.prototype.slice.call(arguments);
+		return console.log(args.filter(a=>a.includes("o")));
+	}
+
+	findow("orchid","tulip","rose","lilek");
+
+
+
+
+
+
+
+
+
+
+
 
 
 
