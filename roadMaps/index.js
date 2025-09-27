@@ -1358,12 +1358,297 @@ const  privets = new WeakMap();
 
 
 	
-	function findow () {
-		let args = Array.prototype.slice.call(arguments);
-		return console.log(args.filter(a=>a.includes("o")));
+//	function findow () {
+//		let args = Array.prototype.slice.call(arguments);
+//		return console.log(args.filter(a=>a.includes("o")));
+//	}
+//
+//	findow("orchid","tulip","rose","lilek");
+//
+//
+
+							/*Expilict binding*/
+
+
+//	technically ,javascript this refers to the object that the function belongs to.
+//	and the value of this depends on how the function is called ,something known,
+//	as tuntime binding.
+//
+//	in laymans terms this points to the owner of the function call.i repeat,
+//	the function call,and not the function itself.the same function can have,
+//	different owners in different scenarios,
+//
+//
+//	4ruls decide the vlue of this .
+//
+//
+//
+//	1-default binding direct| invocation
+//
+//	this in default binding points to the global object.default binding is ,
+//	applied for standalone function and is the fallback option for all other types.
+//
+
+	function myf(){
+
+	console.log(this);
+
+	}
+//	myf();
+
+
+//	2-implict binding | method invocation
+//
+//	implicit binding is applied when you invoke a function in an object using the ,
+//	dot notation.this in such scenarios will point to the object using which the function,
+//	was invoked . or simply the object on the left side of the dot.
+//
+
+
+	function myf2(){
+		console.log(this);
 	}
 
-	findow("orchid","tulip","rose","lilek");
+
+	const ob1 = {
+		someky:1,
+		myf:myf2
+	}
+
+//	ob1.myf();
+
+
+
+//	2-a nested function 
+	
+//	when a function is nested inside a method of an object , the context of the inner function,
+//	depends only on its invocation type and not on the outer functions context
+
+	const ob2 = {
+	   somekey:2,
+		outer:function(){
+			function inner() {
+				console.log(this);
+			}
+			inner();
+		}
+	}
+
+ //	console.log(ob2.outer());
+
+
+
+//	2-b method seprated from the object 
+
+//	when we copy an object method to a new variable , we are creating a reference to the function
+
+
+
+	function myf3(){
+		console.log(this);
+	}
+
+	const ob3 = {
+		somekey:1,
+		myf:myf3,
+	}
+
+	const newf = ob3.myf;
+///	newf();
+
+
+//	3-Explicit binding | indirect invocation 
+//
+//	in this method , you can force a function to use a certain object as its this,
+//	explicit binding can be applied using call , apply and bind.
+//
+//
+//	call():pass in the reuired object as the first parameter during the function call.
+//	the actual parameters are passed after the object.
+//
+//	apply():similar to call() with a difference in the way the actual arguments are passed.
+//	here the actual arguments are passed as an array,
+//
+//
+
+		function myf4 (param1,param2){
+			console.log(this);
+		}
+			
+		const ob4 = {someket:1};
+
+
+		const param1 = 1 , param2 = 2;
+
+//		myf4.call(ob4,param1,param2);
+//		myf4.apply(ob4,[param1,param2]);
+
+
+
+
+
+//	bind():in this method , you create a new function with a fixed this,
+//	these types of function created using bind() are commonly known as bound function.
+
+
+		const boundfunction = myf4.bind(ob4);
+//			boundfunction();
+
+
+	
+
+
+//	4-new binding | constructor invocation 
+
+
+//	new binding is applied when we create an object using function construtor.
+
+
+//	4-a function without return 
+//
+//
+//	when we invole a function using the new operator , internally the following steps are done:	
+//
+//		1.the constructor function is invoked and an object is enternally created,
+//		 inherigin the prototype of the constructor function used.
+//
+//		2.the properties and functions are added to this object as per the function definition.
+//		3.this newly created object is returned and is assigned to the LHS variables at the function call
+//			
+//		
+
+function myf5 (){
+	this.somekey= 1,
+	this.inner = function(){
+		console.log(this);
+	}
+}
+
+const obj5 = new myf5();
+
+//obj5.inner();
+
+//	4-b function with retun 
+
+//	the returned object is assigned to the LHS variable at the function call and the prototype of,
+//	the constructor function is not inherited.
+
+
+
+function myf6(){
+
+	return {
+		somekey:1,
+	}
+}
+
+const ob6 = new myf6();
+
+//console.log(ob6);
+
+
+
+
+
+//	Arrow function 
+//
+//	arrow function use "lexical scop" to figure out what the value of this should be.
+//	lexical scoping is a fancy way of saying uses "this" from the outer function in,
+//	which it is defined.
+//
+//
+//	simply , put , when an arrow function is invoked ,js literally takes the this,
+//	value from the outer function where the arrow function is declared,i repeat,
+//	the outer function not the outer object in which it is defined.
+//
+//	a.if the outer function is a normal function , this depends upon the type of ,
+//	binding of the outer function.
+//
+//	b.if the outer function is an arrow function, js again checks for the next 
+//	outer function and this proccess continues till the global object.
+//
+
+	function outer () {
+		let inner = () => {
+			console.log(this);
+		}
+		inner();
+	}
+
+
+const objA = {
+
+	somekey:1,
+	outer:outer,
+
+}
+
+const objB = {
+	someket:2,
+}
+
+//outer();
+
+//objA.outer();
+//outer.call(objB);
+
+//		note:none of the binding ruls has any direct effect on arrow function.
+
+
+	
+	const myfunC2 = () => {
+		console.log(this);
+	}
+
+
+
+	const obj1A = {
+		myfunC2:myfunC2,
+		inner:()=>{
+			console.log(this);
+		}
+	}
+
+
+
+//	const obj1B = {}
+
+
+//	myfunC2();
+//	obj1A.myfunC2();
+//	obj1A.inner();
+
+
+//	myfunC2.call(obj1B);
+
+
+//	const objc = new myfunC2();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
