@@ -990,6 +990,78 @@ const  privets = new WeakMap();
 //
 //
 //
+			/*This*/
+
+	the value of this in javascript depends on how a function is invoked (runtime binding),
+	not how it is define,when a regular function is invoked as a method of an object,
+	this point to that object.when invoked as a standalone function this refers to the global object,
+
+	arrow function differ ro their handling of this.they inherit from the parent scope at the time,
+	they are define.
+
+	value 
+	in none-strict mode , this is always a refrence to an object. in strict mode , it can be any value.
+
+	description 
+	the value of this depends on in which context it appears:function , class ,or global.
+
+
+
+
+	for a regular function the value of this in the object that the function is accessed on.
+	if the function call is in the form obj.f() the this refers to obj,
+
+
+
+
+
+	function getthis (){
+		return this;
+	}
+
+
+			const obj1= {name:"obj1"};
+			const obj2= {name:"obj2"};
+
+	
+			obj1.getthis= getthis;
+			obj2.getthis = getthis;
+
+
+	console.log(obj1.getthis()); {name:obj1,getthis:[function:getthis]};
+	console.log(obj2.getthis()); {name:obj2,getthis:[function:getthis]};
+
+	
+	the value of this is not the object that has the function as an property, but the object,
+	that is used to call the function . you can prove this by calling a method of an object ,
+	up in the prototype chain.
+
+
+	const obj3 = {
+		__proto__:obj1,
+		name:"obj3"
+	}
+
+	console.log(obj3.getthis());
+
+
+	the value of this always changed based on how a function is called,even when the function,
+	was define on an object at creation:
+	
+	const obj4= {
+		name:"obj4",
+		getthis(){
+			return this;
+
+		}
+	}
+
+
+	const obj5 = {name :"obj5"};
+
+	obj5.getthis = obj4.getthis;
+
+	console.log(obj5.geththis()); {name:"obj5",getthis:[function:geththis]};
 
 
 
@@ -1005,6 +1077,152 @@ const  privets = new WeakMap();
 
 
 
+
+	class C {
+		instancefield = this ;
+		static staticfield = this ;
+	}
+
+	const c = new C();
+
+//	console.log(C.staticfield === C);
+
+
+
+	const objjj = {a:"custom"};
+
+
+	var f = "global";
+
+	function abc() {
+		console.log( this.f);
+	}
+
+	//abc();
+	
+//	objjj.abc= abc;
+//	objjj.abc();
+
+	
+	function add (c,d){
+		return console.log(this.a + this.b + c + d);
+	}
+
+	const o = {a:1,b:3};
+
+
+//	add.call(o,5,7);
+//	add.apply(o,[10,20]);
+
+	function f2 () {
+	  
+		return this.b;
+
+	}
+	
+
+	const g = f2.bind({b:"kian"});
+
+	const h = g.bind({b:"mobin"});
+
+//console.log(h());
+
+
+
+	const b1 = {
+		getthisgetter (){
+			const getter = () => console.log(`${this}`);
+			return getter;
+			}
+	} 
+
+//	console.log(b1.getthisgetter);
+	
+
+//	const b2 = b1.getthisgetter();
+
+//	console.log(b2()() === globalThis);
+
+
+	function kos () {
+		return console.log( this.a + this.b + this.c);
+	}
+
+
+	const p = {
+	  a:1,
+	  b:2,
+	  c:3,
+	  get average(){
+	     return console.log( (this.a + this.b + this.c) / 3);
+	  }
+	}
+
+
+	Object.defineProperty(p,"kos",{
+	   get:kos , 
+	   enumerable:true,
+	   configurable:true,
+	});
+
+
+
+
+//	console.log(o.average,o.kos);
+
+
+
+
+	class Car {
+		constructor() {
+			this.saybye = this.saybye.bind(this);
+		}
+
+
+		sayhi(){
+			console.log(`hello from: ${this.name}`);
+	
+		}
+
+		saybye(){
+			console.log(`bye from:  ${this.name}`);
+
+		}
+
+
+		get name (){
+			
+			return "ferrari";
+
+		}
+	}
+
+
+	class Bird {
+		get name(){
+		  return "tweety";
+		}
+	}
+
+
+		const car = new Car();
+		const bird = new Bird();
+
+
+	//the value of this in methods depends on their caller.
+
+	car.sayhi();
+	car.saybye();
+
+
+	bird.sayhi = car.sayhi;
+
+	bird.sayhi();
+
+	//for bound methods this doesnt depend on the caller 
+	bird.saybye = car.saybye;
+
+	bird.saybye();
 
 
 
