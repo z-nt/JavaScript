@@ -1672,243 +1672,379 @@ const objB = {
 //
 //
 //	function loadscript (src,callback){
-//	 	let script = document.createElement("script");
-//		script.src = src;
+////	 	let script = document.createElement("script");
+////		script.src = src;
+////
+////
+////		script.onload= () => callback(script);
+////		document.head.append(script);
+////	}
+////
+////
+////	the onload event it basically executes a function after the script is loaded and executed.
+////	now if we want to call new function from the script.we should write that in the callback,
+////
+////
+////
+////
+////	loadscript("./main.js",function(){
+////		newfunction();
+////	})
+////
+////
+////
+////	thats the idea the second arguments is a function (usually anonymous) that runs when the ,
+////	action is completed.
+////
+////	callbacks in callbacks 
+////
+////
+////	loadscript("main.js",function(script){
+////
+////		alert(`cool the ${script.src}is loaded`);
+////
+////		loadscript("main.js2",function (script){
+////
+////			alert(`cool the second scripts loaded`);
+////		})
+////
+////	})
+////
+////
+////	after the outer loadscript is complete the callback initiates the inner one.
+////
+////
+////
+////
+////	handelling errors 
+////
+////
+////
+////
+////
+////
+////	function loadscript (src,callback){
+////	 	let script = document.createElement("script");
+////		script.src = src;
+////
+////
+////		script.onload= () => callback(script);
+////		script.onerror  =() => callback(new Error(`this is error for ${src}`));
+////		document.head.append(script);
+////	}
+////
+//		
+//
+//	//	PROMISEI
 //
 //
-//		script.onload= () => callback(script);
-//		document.head.append(script);
-//	}
+//	var timerPromise = new  Promise (function(resolve ,reject) {
+//		
+//		setTimeout(function(){
+//			resolve("hello");
+//		},3000);
+//	});
 //
-//
-//	the onload event it basically executes a function after the script is loaded and executed.
-//	now if we want to call new function from the script.we should write that in the callback,
-//
-//
-//
-//
-//	loadscript("./main.js",function(){
-//		newfunction();
+//	timerPromise.then(function(value){
+//		console.log(value);
 //	})
 //
 //
 //
-//	thats the idea the second arguments is a function (usually anonymous) that runs when the ,
-//	action is completed.
+//javascript was single-threaded from day one,these time-consuming operation were carried out
+//asynchronosly , away from main thread in order to prevent it from being blocked while the 
+//operation were under executing.
 //
-//	callbacks in callbacks 
+//1-events-actions occurring on a web page.
+//2-callbacks-functions stored somewhere to be called back later on .
 //
 //
-//	loadscript("main.js",function(script){
+//	a promise is a means of simlifying the task of writing complex asynchronous code .
 //
-//		alert(`cool the ${script.src}is loaded`);
+//	a promise is an object that represent the success or failure of a given operation.
+//	usually an asynchronous operation.
 //
-//		loadscript("main.js2",function (script){
 //
-//			alert(`cool the second scripts loaded`);
+//
+//
+//	benfits of using promise
+//
+//
+//
+//first of all,promises mitigate the extra levels of indentaion we saw earlier,by a mechanism for 
+//attaching callbacks instead of passing them to another function.
+//
+//secondlly,error-handling in promise is a lot more concise and maintainable than error-handling in
+//callbasks.promise are built upon the conventional try..catch model used to respond ti thrown 
+//exceptions and thus ,offers more convenience to developers in writing exception handling code.
+//
+//biggest benefit of promise lies in the usage of async/await to make anynchronous code look as 
+//if its synchronous code.
+//
+//
+//
+//
+//	creating a promise 
+//
+//
+//the promise() constructor accepts a single arguments which is a function encapsulating the code for
+//the async operation. 
+//
+//the reason for encapsulating the code inside a function is so that the promise() constructor itself has
+//control ower when and how to execute the code contained in the function.
+//
+//
+//	the executor function is meant to execute an asycnchronous operation.
+//
+//
+//
+//
+//	the state of a promise 
+//
+//since the setup of an async operation.it can fall into on of the three cases:still being processed, 
+//succeeded, or fail.
+//
+//	at any point in time , a promise can be in one of the three states:pending,fulfilled,or rejected.
+//
+//
+//
+//	pending means that the underlying async operation is still ongoinng no judgment can be made about,
+//	its outcome yet.
+//
+//	fulfilled means that the async operation  has been    succeeded.
+//
+//	rejected means that the async operation has been failed.
+//
+//
+//
+//	the value of promise 
+//
+//
+//	the value of promise is basically a means of represnting the outcome of the underlying async,
+//	operation that it performs.
+//
+//	a promises value is set by passing an argument to the resolve() or reject() function in the ,
+//	executor.
+//
+//
+//
+//
+//
+//	the then() method 
+//
+//
+//	the then() method of the promise interface is used to execute a function when a promis .
+//	is resolved or rejected.
+//
+//	then accepts two arguments 
+//
+//	1-a function to call once the promise is fulfilled.
+//	2-a function to call once the promise is rejected.
+//
+//
+//
+//	syntax promise.then(onfulfilled,onrejected);
+//
+//
+//	new promise(function (resolve,reject){
+//		settimeout(function(){
+//		    resolve("hello");
+//		},3000)
+//	})
+//
+//	promise.then(function(value){
+//		console.log(value);
+//	})
+//
+//	fist, a promise objects is instantiated by calling new promise();
+//	
+//	the promise() constructor is provided with an executor function where an 
+//	async operation gets performed.
+//
+//	the operation completes at some point in the future.at this point .depending on 
+//	whether it succeeded or faild , the function resolved or rejected is called respectively.
+//
+//	this result in the respective callback function provide to then() to be executed.
+//
+//
+//
+//
+//	the executor function
+//
+//
+//
+//	the executor function is executed immediatly by the internal enigne as soon as the 
+//	promise() constructor called.
+//
+//
+//	console.log("1");
+//
+//	new prmoise(function(res,rej){
+//		console.log("2");
+//	})
+//	
+//	console.log("3");
+//
+//	///log 1 
+//	//log 2 
+//	//log 3
+//
+//
+//	how then() work under hood?
+//
+//
+//	by invocing then() on a promise object,we simply specify that a given function shall be 
+//invoked when promise settles,the function is provided as an arguments to the then() method.
+//
+//	if a promise is unsettled and we invoked then on it ,thers no point of executing the callback,
+//	to sent to then() at this stage,
+//
+//	but we cant also just ignore the callback passed to then(),otherwise it would be useless to call,
+//	then() prior to a promisess settlement,
+//
+//
+//	the only way out is to store the given callback within the promise and fire it as soon as the 
+//	promise is settled,
+//
+//
+//	
+//	promise chaining 
+//
+//
+//	there are basically three possible outecomes of firing the callback passed to then();
+//
+//	returning a non-promise value,
+//	throwing an exception,
+//	returning a promise ,
+//
+//
+//	1-non-promise value
+//
+//	if the callback returns a non-promise value for example a number a string , an array,
+//	the returned promise is fulfilled with the value,
+//
+
+//	var p = new Promise(function(resolve , reject){
+//		resolve("data1");
+//	})
+//
+//	var p2 = p.then(function (data){
+//		return "data2";
+//	})
+//
+//	console.log(p2);
+
+
+
+
+//	var p = new Promise(function(resolve , reject){
+//		reject("sorry");
+//	})
+//
+//	var p2 = p.then(null,function (data){
+//		return "ok";
+//	})
+//
+//	console.log(p2);
+//
+
+
+
+//	an exception thrown
+
+//	if the callbacks throws an exception for example throw new error the returned promise,
+//	is rejected with the value 
+
+
+
+//
+//	var p = new Promise(function(resolve , reject){
+//		resolve("ok");
+//	})
+//
+//	var p2 = p.then(function (data){
+//		
+//		throw "sorry";
+//	})
+//
+//	console.log(p2);
+//
+//
+//
+//	var p = new Promise(function(resolve , reject){
+//		reject("sorry");
+//	})
+//
+//	var p2 = p.then(null,function (data){
+//		throw "sorry again";
+//	})
+//
+//	console.log(p2);
+//
+//
+
+	
+//	a promise value 
+
+
+//if the callbacks returns a promise itself , we have a special case-the promies returned by then abides 
+//by the result of this promise,
+
+//in other words-if the returned promise fulfilled , the dirved promise fulfilled too,if its rejected
+//the drived promise rejected too,and if ites pending the drived promise pending too.
+
+
+
+
+//
+//	var p = new Promise(function(res,rej){
+//		res("ok");
+//	})
+//
+//	var p2 = p.then(function(data){
+//		return new Promise(function(res,rej){
+//		
+//			res(data + "bye");
+//
 //		})
 //
 //	})
 //
 //
-//	after the outer loadscript is complete the callback initiates the inner one.
-//
-//
-//
-//
-//	handelling errors 
-//
-//
-//
-//
-//
-//
-//	function loadscript (src,callback){
-//	 	let script = document.createElement("script");
-//		script.src = src;
-//
-//
-//		script.onload= () => callback(script);
-//		script.onerror  =() => callback(new Error(`this is error for ${src}`));
-//		document.head.append(script);
-//	}
-//
+//	console.log(p2);
+
+
+
+
+	var request1 = new Promise(function(resolve,reject){
+		var xhr = new XMLHttpRequest();
 		
-
-	//	PROMISEI
-
-
-	var timerPromise = new  Promise (function(resolve ,reject) {
-		
-		setTimeout(function(){
-			resolve("hello");
-		},3000);
+		xhr.open("GET","./text.txt",true);
+		xhr.onload = function (e){
+		 	if(this.status === 200){resolve(this)};
+		}
+		xhr.send();
 	});
 
-	timerPromise.then(function(value){
-		console.log(value);
+
+	var request2 = request1.then(function(data){
+		var filename = data.responseText.split("\n")[1];
+
+
+		return new Promise(function(resolve,reject){
+			var xhr = new XMLHttpRequest();
+			xhr.open("GET",filename,true);
+			xhr.onload = function (e){
+			  if(this.status ===200){resolve(this)};
+			}
+			xhr.send();
+		})
 	})
 
 
-
-javascript was single-threaded from day one,these time-consuming operation were carried out
-asynchronosly , away from main thread in order to prevent it from being blocked while the 
-operation were under executing.
-
-1-events-actions occurring on a web page.
-2-callbacks-functions stored somewhere to be called back later on .
-
-
-	a promise is a means of simlifying the task of writing complex asynchronous code .
-
-	a promise is an object that represent the success or failure of a given operation.
-	usually an asynchronous operation.
-
-
-
-
-	benfits of using promise
-
-
-
-first of all,promises mitigate the extra levels of indentaion we saw earlier,by a mechanism for 
-attaching callbacks instead of passing them to another function.
-
-secondlly,error-handling in promise is a lot more concise and maintainable than error-handling in
-callbasks.promise are built upon the conventional try..catch model used to respond ti thrown 
-exceptions and thus ,offers more convenience to developers in writing exception handling code.
-
-biggest benefit of promise lies in the usage of async/await to make anynchronous code look as 
-if its synchronous code.
-
-
-
-
-	creating a promise 
-
-
-the promise() constructor accepts a single arguments which is a function encapsulating the code for
-the async operation. 
-
-the reason for encapsulating the code inside a function is so that the promise() constructor itself has
-control ower when and how to execute the code contained in the function.
-
-
-	the executor function is meant to execute an asycnchronous operation.
-
-
-
-
-	the state of a promise 
-
-since the setup of an async operation.it can fall into on of the three cases:still being processed, 
-succeeded, or fail.
-
-	at any point in time , a promise can be in one of the three states:pending,fulfilled,or rejected.
-
-
-
-	pending means that the underlying async operation is still ongoinng no judgment can be made about,
-	its outcome yet.
-
-	fulfilled means that the async operation  has been    succeeded.
-
-	rejected means that the async operation has been failed.
-
-
-
-	the value of promise 
-
-
-	the value of promise is basically a means of represnting the outcome of the underlying async,
-	operation that it performs.
-
-	a promises value is set by passing an argument to the resolve() or reject() function in the ,
-	executor.
-
-
-
-
-
-	the then() method 
-
-
-	the then() method of the promise interface is used to execute a function when a promis .
-	is resolved or rejected.
-
-	then accepts two arguments 
-
-	1-a function to call once the promise is fulfilled.
-	2-a function to call once the promise is rejected.
-
-
-
-	syntax promise.then(onfulfilled,onrejected);
-
-
-	new promise(function (resolve,reject){
-		settimeout(function(){
-		    resolve("hello");
-		},3000)
+	request2.then(function (data){
+		console.log(data.responseText);
 	})
-
-	promise.then(function(value){
-		console.log(value);
-	})
-
-	fist, a promise objects is instantiated by calling new promise();
-	
-	the promise() constructor is provided with an executor function where an 
-	async operation gets performed.
-
-	the operation completes at some point in the future.at this point .depending on 
-	whether it succeeded or faild , the function resolved or rejected is called respectively.
-
-	this result in the respective callback function provide to then() to be executed.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
