@@ -1751,6 +1751,152 @@ const objB = {
 
 
 
+javascript was single-threaded from day one,these time-consuming operation were carried out
+asynchronosly , away from main thread in order to prevent it from being blocked while the 
+operation were under executing.
+
+1-events-actions occurring on a web page.
+2-callbacks-functions stored somewhere to be called back later on .
+
+
+	a promise is a means of simlifying the task of writing complex asynchronous code .
+
+	a promise is an object that represent the success or failure of a given operation.
+	usually an asynchronous operation.
+
+
+
+
+	benfits of using promise
+
+
+
+first of all,promises mitigate the extra levels of indentaion we saw earlier,by a mechanism for 
+attaching callbacks instead of passing them to another function.
+
+secondlly,error-handling in promise is a lot more concise and maintainable than error-handling in
+callbasks.promise are built upon the conventional try..catch model used to respond ti thrown 
+exceptions and thus ,offers more convenience to developers in writing exception handling code.
+
+biggest benefit of promise lies in the usage of async/await to make anynchronous code look as 
+if its synchronous code.
+
+
+
+
+	creating a promise 
+
+
+the promise() constructor accepts a single arguments which is a function encapsulating the code for
+the async operation. 
+
+the reason for encapsulating the code inside a function is so that the promise() constructor itself has
+control ower when and how to execute the code contained in the function.
+
+
+	the executor function is meant to execute an asycnchronous operation.
+
+
+
+
+	the state of a promise 
+
+since the setup of an async operation.it can fall into on of the three cases:still being processed, 
+succeeded, or fail.
+
+	at any point in time , a promise can be in one of the three states:pending,fulfilled,or rejected.
+
+
+
+	pending means that the underlying async operation is still ongoinng no judgment can be made about,
+	its outcome yet.
+
+	fulfilled means that the async operation  has been    succeeded.
+
+	rejected means that the async operation has been failed.
+
+
+
+	the value of promise 
+
+
+	the value of promise is basically a means of represnting the outcome of the underlying async,
+	operation that it performs.
+
+	a promises value is set by passing an argument to the resolve() or reject() function in the ,
+	executor.
+
+
+
+
+
+	the then() method 
+
+
+	the then() method of the promise interface is used to execute a function when a promis .
+	is resolved or rejected.
+
+	then accepts two arguments 
+
+	1-a function to call once the promise is fulfilled.
+	2-a function to call once the promise is rejected.
+
+
+
+	syntax promise.then(onfulfilled,onrejected);
+
+
+	new promise(function (resolve,reject){
+		settimeout(function(){
+		    resolve("hello");
+		},3000)
+	})
+
+	promise.then(function(value){
+		console.log(value);
+	})
+
+	fist, a promise objects is instantiated by calling new promise();
+	
+	the promise() constructor is provided with an executor function where an 
+	async operation gets performed.
+
+	the operation completes at some point in the future.at this point .depending on 
+	whether it succeeded or faild , the function resolved or rejected is called respectively.
+
+	this result in the respective callback function provide to then() to be executed.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
