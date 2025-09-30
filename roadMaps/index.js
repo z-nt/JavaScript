@@ -1638,119 +1638,116 @@ const objB = {
 //
 
 
-	function loadScript(src){
-		let script = document.createElement("script");
-		script.src = src;
-		document.head.append(script);
-	}
+//	function loadScript(src){
+//		let script = document.createElement("script");
+//		script.src = src;
+//		document.head.append(script);
+//	}
+//
+//	loadScript("./main.js");
+//
+//
+//	lets say we need to use the new script as soonas it loads.it declares new function.
+//	and we want to run them.but if we do that immediately afeter the loadscript call,
+//	that wouldnt work;
+//
+//
+//
+//
+//	loadscript("./main.js");
+//	newfunction(); //no such function
+//	
+//
+//	naturally,the browser probably didnt have time to load the script.as of now the ,
+//	loadscript function doesent provide a way to track the load completion.the script,
+//	loads and eventually runs , thats all.but we had like to know when it happens,
+//	to use new function and variable from that script.
+//
+//
+//
+//
+//	lets add a callback function as a second argument to loadscript that should execute ,
+//	when the script loads.
+//
+//
+//
+//	function loadscript (src,callback){
+//	 	let script = document.createElement("script");
+//		script.src = src;
+//
+//
+//		script.onload= () => callback(script);
+//		document.head.append(script);
+//	}
+//
+//
+//	the onload event it basically executes a function after the script is loaded and executed.
+//	now if we want to call new function from the script.we should write that in the callback,
+//
+//
+//
+//
+//	loadscript("./main.js",function(){
+//		newfunction();
+//	})
+//
+//
+//
+//	thats the idea the second arguments is a function (usually anonymous) that runs when the ,
+//	action is completed.
+//
+//	callbacks in callbacks 
+//
+//
+//	loadscript("main.js",function(script){
+//
+//		alert(`cool the ${script.src}is loaded`);
+//
+//		loadscript("main.js2",function (script){
+//
+//			alert(`cool the second scripts loaded`);
+//		})
+//
+//	})
+//
+//
+//	after the outer loadscript is complete the callback initiates the inner one.
+//
+//
+//
+//
+//	handelling errors 
+//
+//
+//
+//
+//
+//
+//	function loadscript (src,callback){
+//	 	let script = document.createElement("script");
+//		script.src = src;
+//
+//
+//		script.onload= () => callback(script);
+//		script.onerror  =() => callback(new Error(`this is error for ${src}`));
+//		document.head.append(script);
+//	}
+//
+		
 
-	loadScript("./main.js");
+	//	PROMISEI
 
 
-	lets say we need to use the new script as soonas it loads.it declares new function.
-	and we want to run them.but if we do that immediately afeter the loadscript call,
-	that wouldnt work;
+	var timerPromise = new  Promise (function(resolve ,reject) {
+		
+		setTimeout(function(){
+			resolve("hello");
+		},3000);
+	});
 
-
-
-
-	loadscript("./main.js");
-	newfunction(); //no such function
-	
-
-	naturally,the browser probably didnt have time to load the script.as of now the ,
-	loadscript function doesent provide a way to track the load completion.the script,
-	loads and eventually runs , thats all.but we had like to know when it happens,
-	to use new function and variable from that script.
-
-
-
-
-	lets add a callback function as a second argument to loadscript that should execute ,
-	when the script loads.
-
-
-
-	function loadscript (src,callback){
-	 	let script = document.createElement("script");
-		script.src = src;
-
-
-		script.onload= () => callback(script);
-		document.head.append(script);
-	}
-
-
-	the onload event it basically executes a function after the script is loaded and executed.
-	now if we want to call new function from the script.we should write that in the callback,
-
-
-
-
-	loadscript("./main.js",function(){
-		newfunction();
+	timerPromise.then(function(value){
+		console.log(value);
 	})
-
-
-
-	thats the idea the second arguments is a function (usually anonymous) that runs when the ,
-	action is completed.
-
-	callbacks in callbacks 
-
-
-	loadscript("main.js",function(script){
-
-		alert(`cool the ${script.src}is loaded`);
-
-		loadscript("main.js2",function (script){
-
-			alert(`cool the second scripts loaded`);
-		})
-
-	})
-
-
-	after the outer loadscript is complete the callback initiates the inner one.
-
-
-
-
-	handelling errors 
-
-
-
-
-
-
-	function loadscript (src,callback){
-	 	let script = document.createElement("script");
-		script.src = src;
-
-
-		script.onload= () => callback(script);
-		script.onerror  =() => callback(new Error(`this is error for ${src}`));
-		document.head.append(script);
-	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
