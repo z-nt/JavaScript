@@ -2013,38 +2013,331 @@ const objB = {
 //
 //	console.log(p2);
 
+//
+//
+//
+//	var request1 = new Promise(function(resolve,reject){
+//		var xhr = new XMLHttpRequest();
+//		
+//		xhr.open("GET","./text.txt",true);
+//		xhr.onload = function (e){
+//		 	if(this.status === 200){resolve(this)};
+//		}
+//		xhr.send();
+//	});
+//
+//
+//	var request2 = request1.then(function(data){
+//		var filename = data.responseText.split("\n")[1];
+//
+//
+//		return new Promise(function(resolve,reject){
+//			var xhr = new XMLHttpRequest();
+//			xhr.open("GET",filename,true);
+//			xhr.onload = function (e){
+//			  if(this.status ===200){resolve(this)};
+//			}
+//			xhr.send();
+//		})
+//	})
+//
+//
+//	request2.then(function (data){
+//		console.log(data.responseText);
+//	})
+//
+//
+//
+
+
+//				async/await
+
+
+//	a function always returns a promise.other values are wrapped in a resolved promise automatically.	
+//async ensures that the function returns a promise , and wrap non-promise in it.
+//await ,that works only inside async function.
+//
+//
+//
+//
+//	async function f(){
+//		return 1;
+//
+//	}
+//
+////	f().then((val)=>{console.log(val)});
+//
+//
+//	async function f2(){
+//		return Promise.resolve(1);
+//	}
+//
+//
+//
+////	f2().then((val)=>{console.log(val)});
+//
+//
+//
+/////	the keyword await makes javascript wait untill that promise settles and returns its result.
+////
+//
+//
+//	async function f3(){
+//	   let promise = new Promise((resolve,reject)=>{
+//		setTimeout(()=>resolve("done!"),1000)
+//	   });
+//
+//	   let result = await promise;
+//		console.log(result);
+//	}
+//
+//
+//	//f3();
+//
+//
+//	the function executing "pauses" at the line (*) and resumes when the promise settles,with result ,
+//	becoming its result. so the code above shows "done!" in one scond.
+//
+//	lets emphasize:await literally suspands the function executing untill the promise settles,and then
+//	resumes it with the promise result,that doesnt cost any cpu resources,because the javascript engine 
+//	can do other jobs in the meantime:execute other scripts,handle events,
+//
+//	its just a more elegant syntax of getting the promise result than promise.then and its easier to read and 	  write,
+//
+//
+//
+//
+//	cant use await in regular function 
+//
+//
+//	if we try to use await in a non-async function , where would be a syntax error.
+//
+//	function f() {
+//	 	let promise = Promise.resolve(1);
+//		let result = await promise; //syntax error;
+//	}
+//
+//	we may get this error if we forget to put async befor a function,as stated earlier,await only 
+//	works inside an async function.
+//
+//
+//	async function showAvatar(){
+//		let response = await fetch("url/fortest");
+//		let uer = response.json();
+//
+//		let githubResponse = await fetch(`usersfortest/${user.name}`);
+//		let guthubUsers = await githubResponse.json();
+//
+//		let img = document.createElement("img");
+//		img.src = githubUsers.avatar_url;
+//		img.className = "promise-awatar-example";
+//		document.body.append(img);
+//
+//
+//		await new Promise((resolve , reject)=> setTimeout(resolve,3000));
+//
+//		img.remove();
+//
+//		return githubUsers;
+//	}
+//
+//	showAvatar();
+////
+////
+////
+////like promise.then , await allows us to use thenable objects the idea is that a third-party object 
+////may not be a promise , but promise-compatible,if is supports .then thats enough to use it with await.
+////
+//
+//
+//	class Thenable {
+//		constructor (num){
+//			this.num = num
+//		}
+//
+//		then(resolve,reject){
+//			console.log(resolve);
+//
+//			setTimeout(()=>resolve(this.num * 2),1000);
+//		}
+//	}
+//
+//
+//	async function f4(){
+//
+//		let resutl = await new Thenable(1);
+//	
+//		console.log(resutl);
+//
+//	}
+//	
+//
+////	f4();
+//
+//
+////if await gets a non-promise object with .then , it calls that method providing the bult-in function
+////resolve and reject as arguments just as it does for a regular promise executor then await waits untill
+////one of them is called and then proceeds with the result;
+//
+//
+//
+//	class Waiter{
+//		async wait(){
+//			return await Promise.resolve(1);
+//		}
+//	}
+//
+//
+////	new Waiter()
+////		.wait()
+////		.then((val)=>{console.log(val)});
+//
+//
+////if a promise resolves normally,then await promise returns the result,but in the case of a rejection,it
+////throws the error,just as if there were a throw statement at that line,
+//
+////	this code :
+//	async function f(){
+//		await Promise.reject(new Error("whoops"));
+//	}
+////	f();
+//
+//
+////	is the same as this:
+//
+//
+//		async function f2() {
+//			throw new Error("im error");
+//		}
+//
+//
+////	f2();
+//
+//
+//
+////in real situation , the promise may take some time befor it rejects, in that case there will be a delay
+////befor await throws an error;
+//
+////we can catch that error using try...catch , the same way as a regular throw
+//
+//
+//	async function f1(){
+//		try{
+//			let response = await fetch("this is test");
+//		}catch(error){
+//		console.log(error);
+////		}
+////	}
+////	f1();
+//
+//
+//
+////	in the case of an error , the control jumps to the catch block,we can also wrap multiple lines:
+//
+//	async function f(){
+//		try{
+//			let response = await fetch("this is test");
+//			let result = await response.json();
+//		}catch(err){
+//			console.log(err);
+//		}
+//	}
+//
+//
+//
+////	f();
+//
+//
+////	if we  dont have try..catch,then the promise generated by the call of the async function f() becomes
+////	rejected,we can append .catch to handle it;
+//
+//
+//
+//	async function f2(){
+//
+//		let response = await fetch ("dodol tatla");
+//
+//	}
+//
+//
+//	f2.catch(err){console.log(err)};
+//
+//
+//
+//
+//	async/await and promise.then
+//
+//
+//
+//when we use async/await , we already need .then because await handles the waiting for us,
+//and we can use a regular try..catch instead of .catch , thats usually more convenient;
+//
+//
+//but at the top level of code,when we are outside any async function,we are syntacircally unable to
+//use await, so its a normal practice to add  .then/catch to handle the final result or falling-through
+//error,like in the line of the example above.
+//
+//
+//	async/await works well with promise.all
+//
+//when we need to wait for multiple promises , can wrap them in promise.all and then await,
+//
+//
+//	let result = await Promise.all([
+//		fetch(url1),
+//		fetch(url2),
+//		...
+//	]);
+//
+//
+//in the case of an error ,it propagates as usual , from the failed promise to promise.all ,and
+//then becomes an exception that we can catch using try..catch around the call,
+//
+//
+//
+//
+//summary 
+//
+//
+//the async keyword befor a function has two effects:
+//
+//1.makes it always return a promise,
+//2.allows await to be used in it,
+//
+//
+//the await keyword befor a promise makes javaScript wait untill that promise settles ,and then:
+//
+//1.if its an error,an exception is generated -- same as if throw error were called at that very place,
+//2.otherwise , it returns the result.
+//
+//
+//together they provide a great framwork to write asyncchronous code that is easy to both read and write,
+//
+//
+//
+//with async/await we rarely need to write promise.then/catch,but we still shoudnt forget that they are 
+//based on promises,because somtimes we have to use these methods also promise.all is nise when we are
+//writing  for many tasks simultaneously.
+//
 
 
 
-	var request1 = new Promise(function(resolve,reject){
-		var xhr = new XMLHttpRequest();
-		
-		xhr.open("GET","./text.txt",true);
-		xhr.onload = function (e){
-		 	if(this.status === 200){resolve(this)};
-		}
-		xhr.send();
-	});
 
 
-	var request2 = request1.then(function(data){
-		var filename = data.responseText.split("\n")[1];
 
 
-		return new Promise(function(resolve,reject){
-			var xhr = new XMLHttpRequest();
-			xhr.open("GET",filename,true);
-			xhr.onload = function (e){
-			  if(this.status ===200){resolve(this)};
-			}
-			xhr.send();
-		})
-	})
 
 
-	request2.then(function (data){
-		console.log(data.responseText);
-	})
+
+
+
+
+
+
+
+
+
+
 
 
 
