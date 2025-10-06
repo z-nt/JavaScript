@@ -2322,6 +2322,197 @@ const objB = {
 
 
 
+		making network requests with javascript 
+
+
+
+what is the problem here?
+
+	a web page consist of an html page and various other files,such as stylesheet , script,
+	and images.the basic model of page loading on the web is that youre browser makes one or ,
+	more http requests to the server for the files needed to displaye the page,and the server ,
+	responsed with the requested files,if you visit another page,the browser requests the new files,
+	and the server responds with them,
+
+	the trouble of the traditional model here is that we,d have to fetch and load the ntire page,
+	even when we only need update one part of it,this is inefficient and can result in a poor user experoinc,
+
+
+	the main api here is the fetchApi, this enables javascript running in a page to make an http 
+	request to a server to retrieve specific resources,when the server provides them,the javascript 
+	can use the data to update the page ,typically by using dom manipulation api the data requested is 
+	often jason which is a good format for transferring structured data,but can also be html or just text,
+
+
+	.page updates are a lot quicker and you dont have to wait fo the page to refresh , meaning that
+	the sites feels faster and more responsive ,
+
+	.less data is downloaded on each update,meaning less wasted bandwith,this may not be such a big,
+	issue on a desktop on a broadband connection,but its a major issue on mobile devices and in contries
+	that dont have ubiquitous fast internet serivce,
+
+
+
+
+	some sites also store assets and data on the users computer when they are first requested,meaning
+	that on subsequent visit they use the local versions instead of downloading fresh copies every time,
+	the page is first loaded ,the contetn is only reloaded from the server when it has been updated,
+
+
+
+	fetch(url)
+	.then((response)=>{
+
+	if(!response.ok){
+		throw new Error (`http error:${response.status}`);
+	}
+
+
+
+		return response.text();
+
+	})
+
+	.then((text)=>{
+		poemdisplay.textContent = text
+	})
+
+	.catch ((err)=>{
+		poemdisplay.textContent = `could not fetch ${err}`;
+	})
+
+
+
+
+
+
+		USING THE FETCH API 
+
+
+
+	the fetch api provides a javascript interface for making http requests and processing the responses.
+	unlike XMLHttpRequest , which uses callbacks,fetch is promise-based and is integrated with featurs,
+	of the modern web such as service worker,cross origin resource sharing CORS.
+
+
+
+	with the fetch api , you make a request by calling fetch(),which is available as a global function 
+	in both window and worker context,you pass it a request object or a string containing the url to fetch,
+	along with an optional argument to configure the request,
+
+
+
+	the fetch function returns a promise which is fulfilled with a response object representing the servers,
+	response, you can then check the request status and extract the body of the response in various format,
+	including text and json by calling the appropriate on the response,
+
+
+
+
+	async function getData (){
+		const url = "https://examle.org";
+
+		try {
+			const response = await fetch(url);
+			
+			if(!response.ok){
+				throw new Error (`${response.status}`);
+			}
+			
+			const result = await response.json();
+			console.log(result);
+		}catch(err){
+			console.log(err.message);
+		}
+	}
+
+
+
+	making a request 
+
+
+	1.a definition of the resource to fetch , this can be any one of :
+		.a string containing the url
+		.an object,such as an instance of  url,which has a stringifier that product a string,
+			containing the url,
+		.a request instance,
+
+	2.optionally,an object containing options to configure the request,
+
+
+
+
+	*setting the method 
+
+	by default fetch makes a get request , but you can use the method option to use a different request.
+	if the mode option is set to no-cors ,then method must be one of get,post or head.
+
+	const response = await fetch(url,{
+		method:"POST",
+
+
+	})
+
+
+
+	*settinf a body 
+
+
+	the requset body is the payload of the request:its the thing the client is sending to the server.
+	you cannot include a body with get request,but its useful for request that send content to the server,
+	such as post or put requests ,if you want to upload a file to the server , you might make a post request
+	and include the files as the request body,
+
+
+	const response = await fetch(url,{
+		method:"POST",
+
+		body: JSON.stringfy({username:"kiannosratian"}),
+	})
+
+
+
+
+	*setting headers 
+
+	request headers give the sever information about the request,in a post request the content-type headers
+	tells the server the format of the  request body.
+
+
+
+	const response = await fetch(url,{
+		method:"POST",
+		headers:{
+		  "Content-Type":"application/json",
+		},
+
+		body: JSON.stringfy({username:"kiannosratian"}),
+	})
+
+
+
+
+	sending data in a get request 
+
+
+	get request dont have a body,but you can still send data to the server by appending it to the url as 
+ 	a query string,this is a common way to send form data to the server , you can do this by using 
+	urlsearchparams to encode the data , and then appending it to the url,
+
+
+	const params = new URLSearchParams();
+
+	params.append("username","example");
+	
+	const response = await fetch(`${params}`);
+
+
+
+	MAKING cross-origing-requests
+
+
+
+
 
 
 
