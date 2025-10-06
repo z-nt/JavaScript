@@ -2511,6 +2511,23 @@ what is the problem here?
 	MAKING cross-origing-requests
 
 
+cors is an http-header based mechanism that allows a server to indicate origin other than its own from which 
+a browser should permit loading resourses.cors also relies on a mechanism by which browsers make a preflight 
+request to the server hosting the cross-origin resource ,in order to check that the server will permit the 
+actul request,in that preflight , the browser sends headers that indicate the http method and headers that 
+will be used in the actul request.
+
+
+what request use cors?
+
+	*invocations of fetch or xmlhttprequest
+	*web fonts so that servers can deploy truetype fonts that can only be loaded 
+	cross-origin and used by websites that are permitted to do so.
+	*webgl textures.
+	*images/video frames drawn to a canvas using drawimage();
+	*css shapes from images.
+
+
 
 
 
