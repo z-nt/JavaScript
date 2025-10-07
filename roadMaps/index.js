@@ -2533,24 +2533,278 @@ const objB = {
 
 
 
-	CLASS BASIC SYNTAX 
+//	CLASS BASIC SYNTAX 
+
+
+//in practice, we often need to create many object of the same kind,like users of goods or whatever.
+
+
+
+//then use new mycalss () to create a new object with all the listed methods.
+//the constructor method is called automatically by new , so can initialize the object there.
+
+
+//	class User {
+//		constructor(name){
+//		   this.name = name;
+//		}
+//		sayHi(){
+//		console.log(this.name);
+//		}
+//	}
+//
+//
+//
+//	let user = new User("ali");
+//	user.sayHi();
+
+ // when new user is called : 
+//	1.a new object is created.
+//	2.the constructor runs with the given argument and assign it to this.name;
+//then we can call object methods , such as user.sayHi();
+
+//in  java script , a class is a kind of function.
+
+
+//	console.log(typeof User);
+
+//what class User construct really does is : 
+//
+//1.creates a function named User,that becomes the result of the class declaration,the function code is taken
+//from constructor method .
+//2.stores class methods, such as sayHi in user.prototype.
+//
+//	after new user object is created , when we call its methods,its taken from the prototype,
+//	so the object has access to class methods,
+//
+//
+//
+//
+
+//	console.log(User === User.prototype.constructor);
+//	console.log( User.prototype.sayHi);
+//console.log(Object.getOwnPropertyNames(User.prototype));
+
+
+//	there are important differences.
+//
+//	1.first, a function created by class is labelled by a special internal property [ISClassConstructor]
+//	true,so its not entirely the same as creating it manually,
+//	
+//	the language checks for the property in a variety of places.unlike a regular function , is must be 
+//	called with new,
+//
+//
+//
+//	USer() Error cannot be invoked without new ;
+//
+//
+//
+//	2-class methods are non-enumerable,a class definition sets enumerable flag to false for all 
+//	methods in the property,
+//
+//	thats good because if we for..in over an object,we usually dont want its class methods,
+////
+//	class MyClass {
+//		classmethod(){}
+//	}
+//
+//	function myoldclass (){}
+//
+//	myoldclass.prototype.oldmethod = function (){};
+//
+//	const instance = new MyClass();
+//
+//
+//	for(let prop in  instance ){
+//		console.log(prop);
+//	}
+//
+//	const oldInstance = new myoldclass();
+//
+//	for(let prop in oldInstance){
+//		console.log(prop);
+//	}
+//
+//
+
+	//3- classes always use strict ,all code inside the class construct is automatically in strict mode ,
 
 
 
 
+//	class Expression 
+
+
+//	just like function , classes can be defined inside another expression,passed around , assigned,
+
+
+//	let NUser = class newclass {
+//		sayhi(){console.log("hello")};
+//	}
+//	new NUser().sayhi();
+
+	// works,shows myclass definition
+
+//	console.log(newclass); // erroe, newclass name isnt visible outside of the class
+
+
+// 	we can even make classes dynamically on-demand 
 
 
 
+//	function makeClass (obj){
+//		return class{
+//		  sayhe(){
+//			console.log(obj);
+//		  }
+//
+//		}
+//
+//	}
+//
+//	let A = makeClass("hi");
+//	new A().sayhe();
+//
+
+//		Getters/setters 
+
+//just like literal object , classes may include getters/setters , computed properties 
 
 
 
+//	class A {
+//		constructor(name){
+//			this.name = name;
+//		}
+//
+//
+//		get name(){
+//			return this._name;
+//		}
+//
+//		set name(value){
+//			if(value.length < 4 ) {
+//				console.log("name is short");
+//				return
+//			}
+//			this._name = value;
+//		}
+//	}
+//
+//	let B = new A("kian");
+//	console.log(B.name);
+//
+//	    B = new A("");
+//
+//
+//such class declaration works by creating getter and setters in user.prototype;
+//
+//
+//
+//
+
+
+//	computed names [..]
+
+
+//	class User {
+//		["say" + "hi"](){
+//			console.log("its computed name ");
+
+//		}
+//	}
+
+//	new User().sayhi();
 
 
 
+//	class fields 
+
+//class fields is a syntax that allows to add any properties;
+
+
+//	class User {
+//		name = "kian";
+//		say(){
+//			console.log(this.name);
+//		}
+//	}
+
+//	 new User().say();
+
+//the important difference of class fields is that they are set on indiviual objects,not user.prototype;
+	
+//	let user = new User();
+//	console.log(user.name);
+
+//	console.log(User.prototype.name);
 
 
 
+//	making bound methods with class fields;
 
+
+//if an object method is passed around and called in another context,this wont be a reference to its object any more
+
+
+
+//	class Button {
+//		constructor (value){
+//			this.value = value;
+//		}
+//	
+//		click(){
+//		  console.log(this.value);
+//		}
+//	}
+
+
+//	let button = new Button ("eeeee");
+//	  button.click();
+//	setTimeout(button.click,1000);
+//
+//
+//	the problem is called losing this.
+//	
+//	1.pass a wrapper-function , such as setTimout(()=>button.click(),1000);
+//
+//	2-bind the method object in the constructor,
+//
+//
+//
+	
+
+//
+//
+//
+//	class Button {
+//		constructor (value){
+//			this.value = value;
+//		}
+//	
+//		click = () => {
+//		  console.log(this.value);
+//		}
+//	}
+//
+//
+//
+//
+//
+//	let button = new Button ("eeeee");
+//	  button.click();
+//	setTimeout(button.click,1000);
+//
+//
+//
+//
+//the class fields click = () => {} is created on a per-object basis,there is a seprate function for each
+//button object , with this inside it refercing that object , we can pass button.click around anywhere and
+//the value of this will always be correct;
+//
+//
+//	
 
 
 
