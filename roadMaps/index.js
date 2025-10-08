@@ -3501,6 +3501,304 @@ function f(arg){
 //
 
 
+//		privet and protected properties and methods 
+//
+//one of the most important priciples of object oriented proframming-delimiting internal interface form
+//external one,
+//
+//that is must practice in developing asnthing more complex than a hello world app
+//
+//internall and external interface
+//
+//
+//in object-oriented programming , properties ane methods are split two groups:
+//
+//	internal interface-methods and properites-accessible from other methods of the class,
+//	but not from the outside,
+//
+//	external interface - methods and properties ,accessible also from outside the class
+//
+//if we continue the analogy with the coffee machine-whats hidden inside : a boiler tube,heating element,and
+//so on is its internal interface;
+//
+//an internal interface is used for the object to work,its details use each other,for instance a 
+//boiler tube is attached to the heating element
+//
+//but from the outside a coffee machine is closed by the protective cover , so that no one can reach 
+//those, details are hidden and inaccessible,we can use its features via the external interface;
+//
+//so , all we need to use an object is to know its external interface,we may be completely unaware how
+//it works inside,and thats great,
+//
+//tha was a general introduction
+//
+//
+//
+//in javascript there are two types of object fields (properties and methods);
+//
+//	public:accessible from anywhere,they comprise the external interface,untill now we were only
+//	using public propertes and methods;
+//
+//	privet:accessible only from inside the class,these are for the internal interface;
+//
+//
+//
+//
+//in many other languages there also exist protected fields:accessible only from inside the class and
+//those extending it(like privat, but plus access from inheriting classes).they are also useful for the
+//internal interface,thay are in a sense more widesoread than private ones,because we usually want 
+//inheriting classes to gain access them.
+//
+//
+//protected fields are not implemented in javascript on the language level,butin practice they are 
+//very convenient , so they are emulated.
+//
+//
+//
+//
+
+//		protecting "waterAmount"
+
+
+
+//class CoffeeMachine{
+// waterAmount = 0;
+//
+//	constructor(power){
+//		this.power = power;
+//		console.log(`created a coffee machine,power:${this.power}`)
+//	}
+//}
+//
+//let coffeemachine = new CoffeeMachine(100);
+//
+//coffeemachine.waterAmount = 200;
+//
+//
+//
+//right now the properties wateampount and power are   public , we can easily get/set them from the outide to 
+//any value,
+//
+//protected properties are usually prefixed with an unerscore _.; 
+//
+//that is not enforced on the language level , but theres a well-known convention between programmers that such
+//properties and method should not be accessed from the outside;
+//
+//
+//so our property will be called _waterAmount;
+
+
+
+class CoffeeMachine{
+	_waterAmount = 0;
+
+
+	set waterAmount(value){
+		if (value < 0){
+			value = 0;
+		}
+		this._waterAmount = value;
+	}
+
+	get waterAmount() {
+		return this._waterAmount;
+	}
+
+	constructor(power){
+		this._power = power;
+	}
+
+}
+
+let coffeemachine = new CoffeeMachine(100);
+
+//console.log(coffeemachine);
+
+//coffeemachine.waterAmount = 10;
+
+
+//console.log(coffeemachine);
+
+
+//now the access is under control , so setting the water amound below zero becomes imposiile;
+
+//read-only power
+
+
+//for power properti lets make it read-only,is sometimes happens that a property must be set at
+//craetion time only ,and then never modified.
+
+
+class Coffe {
+	constructor(power){
+		this._power = power;
+	}
+		get power(){
+		return this._power;
+
+		}
+
+}
+
+let coffee = new Coffe(100);
+
+//console.log(`coffee is power ${coffee.power}w`);
+//coffee.power = 29;
+
+
+//here we used getter/setter syntax
+
+//but most of the tim get/set functions are preferred ;
+
+
+class Toffee {
+	_waterAmount = 0;
+
+	setWaterAmount (value){
+		if(value < 0 ){
+			value = 0;
+		}
+		this._waterAmount = value;
+	}
+
+	getWaterAmount () {
+
+		return this._waterAmount;
+	}
+}
+
+ new Toffee().setWaterAmount(299);
+
+
+//that looks a bit longer,but functions are more flexible,thay can accept multiple arguments,
+//even if we dont need them right now;
+
+//on the otherhand get/set syntax is shorter, so ultimately theres no strict rule,its up to you to decide,
+
+
+
+//protected fields are inherited
+
+//if we inherit class megamachine extends coffeemachine , then nothing prevents us from 
+//accessing this._wterAmount of this._power from the method of the new class,
+
+//so protected fields are naturally inheritable,unlike private ones ;
+
+
+//		private #waterLimit;
+
+//theres a finished javascript proposal,
+
+//private should start with # they are only accessible from inside the class;
+
+
+
+class Tof2{
+
+	#waterLimit = 200;
+
+	#fixWaterAmount(value){
+		if (value < 0 ) return 0;
+		if(value > this.#waterLimit) return this.#waterLimit;	
+
+	}
+
+	setWaterAmount(value){
+	this.#waterLimit = this.#fixWaterAmount(value);
+	}
+
+}
+
+
+//let tof2 = new Tof2();
+
+//tof2.#fixWaterAmount(124);
+/////tof2.#waterLimit = 2000;
+
+
+//on the language level # is a special sign that the field is private , we cant access it from outside 
+//or from inheriting classes;
+
+//private fields do not confilict with public ones,we can have both private #waterAmound and public
+//waterAmount fields at the same time;
+
+
+class Tof3{
+	#waterAmount = 0 ; 
+
+	get waterAmount(){
+		return this.#waterAmount;
+	}
+
+	set waterAmount(value){
+		if(value < 0) value = 0;
+
+		this.#waterAmount = value;
+
+	}
+
+
+}
+
+let tof3 = new Tof3()
+
+tof3.waterAmount = 100;
+
+console.log(tof3.waterAmount);
+
+unlike protected ones , priver fields are enforced by the language itself,
+but if we inherit from coffee then we will have no direct access to #waterAmount ,we will need to rely
+on wateramount getter/setter;
+
+class Megamachin extends Coffeemchine{
+	method(){
+		console.log(this.#waterAmount) error can only access from cofeemachin
+
+	}
+}
+
+in many senarios such limition is too server .if we extends a coffeemachine we may have 
+legimitate reasone to access its internals.thats why protected fields are used more often,
+	even though they are not supported by the language syntax
+
+
+private fields are not avalilable as this[name];
+
+
+with private fields thats impossible this[#name] doesnt work,
+
+
+
+
+	summary
+
+in terms of oop , delimiting of the internal interface from the external interface is called
+encapsulation,
+
+it gives the following benefits:
+
+
+protecting for users , so that they dont shoot themselves in the foot
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
