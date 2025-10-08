@@ -3119,39 +3119,139 @@ function f(arg){
 //
 //
 
+//
+//	let animal = {
+//		name :"animal",
+//		eat() {
+//			console.log(`${this.name} eats`);
+//		},
+//		sayhi(){
+//			console.log("im an animal");
+//		}
+//	}
+//
+//
+//	let rabbit = {
+//		__proto__ : animal,
+//		name : "rabbit",
+//		eat(){
+//			super.eat();
+//
+//		}
+//
+//	}
+//
+//	let dog = {
+//		__proto__:rabbit,
+//		name:"dog",
+//		eat(){
+//
+//		  super.eat();
+//		}
+//
+//	}
+//
+//	let planet = {
+//		sayhi(){
+//			console.log("hello");
+//		}
+//	}
+//
+//	let tree = {
+//		__proto__ : planet,
+//		sayhi : animal.sayhi
+//	}
+//
+//
+//
+// 		methods are not free.
+//
+//generally funcitons are free. not bound to objects in javascript , so they can be copied between objects and 
+//called with another this,
+//
+//
+//the very existance of homeobject violates that principle,because methods remember their objects, 
+//homeobjects cant be changed , so this bond is forever,
+//
+//
+//the only place in the language where homeobject is used is super, so if a method does not use super
+//then we can still consider it free and copy between objects,but with super things may ho wrong,
+//
+//
+//	a call to tree.sayhi() shows im an animal , definitely wrong,
+//
+//
+//
+//the reason is simple:
+//
+//
+//in line * the method sayhi was copied from rabbit, maybe we just wanted to avoid copy duplication?
+//	
+//-its homeobject is rabbit ,as it was created in rabbit,theres no way to change homeobject;
+//
+//-the code of tree.sayhi() has super.sayhi inside , it goes up from rabbit and takes the method from aniumal
+//
+//
+//	methods,not function properties
+//
+//
+//homeobject is defined for methods both in classes and in plain objects,but for objects , method must be
+//specified exactly as method () not as "method:function()" 
+//
+//its important for javascripts
+//
 
-	let animal = {
-		name :"animal",
-		eat() {
-			console.log(`${this.name} eats`);
 
-		}
-	}
+//	let animal = {
+//		eat:function (){
+//			console.log("eat");
+//
+//		}
+//	}
+//
+//	let rabbit = {
+//		__proto__:animal,
+//		eat:function(){
+//			super.eat();
+//		}
+//	}
+//
+//
+//	rabbit.eat();
+//
+//
+//
+//		summary 
+//
+//1-to extend a class:class child extends parent
+//
+//	that means child.prototype.proto will be parent.prototype so methods are inherited,
+//
+//2-when overriding a constructor 
+//	
+//	we must call parent constructor as super() in child constructor befor using this,
+//
+//3-when overring another method:
+//		
+//	we can use super.method() in a child method to call parent method.
+//
+//4-internals:
+//
+//	methods remember their class/object in the internal homeobject property,thats how super.
+//	resolve parent method
+//
+//	so its not safe to copy a method with super from one object to another,
+//
+//also:
+//
+//	arrow function dont have their own this or super,so they transparently fit into the surrounding context.
+//
+//
+//
 
 
-	let rabbit = {
-		__proto__ : animal,
-		name : "rabbit",
-		eat(){
-			super.eat();
-
-		}
-
-	}
-
-	let dog = {
-		__proto__:rabbit,
-		name:"dog",
-		eat(){
-
-		  super.eat();
-		}
-
-	}
 
 
-
-		dog.eat();
 
 
 
