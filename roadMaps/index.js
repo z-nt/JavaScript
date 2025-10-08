@@ -2807,6 +2807,351 @@ const objB = {
 //	
 
 
+//			class inheritance 
+//class inheritance is a way for one class to extend another class.
+
+			
+//
+//class Animal {
+//  constructor(name){
+//	this.speed = 0;
+//	this.name = name;
+//}	
+//  run(speed){
+//	this.speed = speed;
+//	  console.log(`${this.name} runs with speed ${this.speed}`);
+//  }
+//
+//  stop(){
+//	this.speed = 0;
+//	  console.log(`${this.name} stands still `);
+//  }
+//}
+//
+//let animal = new Animal ("");
+//
+//class Rabbit extends Animal {
+//  hid(){
+//	console.log(`${this.name} hies`);
+//  }
+//}
+//
+//let rabbit = new Rabbit("white rabbit");
+//
+//rabbit.run(5);
+//rabbit.hid();
+
+
+
+
+
+
+//as rabbits are animals , rabbit class should be based on aminal , have access to animal methods,
+//so that rabbits can do what generic animals can do.
+
+//internally extends keyword works using the good old prototype mechanics ,it sets rabbit.prototype 
+//to animal.prototype , os if a method is not found in rabbit.prototype javascript takes from animal.prototype
+
+
+//any expreesion is allowd after extends 
+
+//class syntax allows to specify not just a class , but any expression after extends
+
+
+
+function f(arg){
+	return class{
+	   sayhi(){
+		console.log(arg);
+	   }
+	}
+}
+
+//class User extends f("hello"){}
+
+//new User().sayhi();
+
+
+
+//overriding a method 
+
+//we dont want to totally replace a parent method ,but rather to build on top of it to tweak or
+//extends its functionality , we do somthing in our method , but call the parent method befor/after 
+//it or in the process;
+
+
+//class provides super keyword for that.
+
+//	* super.method to call a parent method;
+//	* super()to call parent constructor(inside our constructor only);
+//	
+//class Animal {
+//  constructor(name){
+//	this.speed = 0;
+//	this.name = name;
+//}	
+//  run(speed){
+//	this.speed = speed;
+//	  console.log(`${this.name} runs with speed ${this.speed}`);
+//  }
+//
+//  stop(){
+//	this.speed = 0;
+//	  console.log(`${this.name} stands still `);
+//  }
+//}
+//
+//let animal = new Animal ("");
+//
+//class Rabbit extends Animal {
+//  hid(){
+//	console.log(`${this.name} hies`);
+//  }
+//  stop(){
+//	super.stop();
+//	this.hid();  
+//  }
+//}
+//
+//let rabbit = new Rabbit("white rabbit");
+//
+//rabbit.run(5);
+//rabbit.stop();
+//
+//
+//
+//arrow function have no super,if accessed its taken from the outer function,
+
+//class Rabbit extends Animal {
+//stop(){
+ //	setTimeout(()=>super.stop(),1000); //call parent stop after 1sec
+
+//}
+//}
+
+
+
+//if a class extends another class and has no contructor ,then the following "epmty" constructor is generated;
+
+//class Rabbit extends Animal {
+ //  constructor(...args){
+//	super(...args);		
+  //}
+//}
+
+//t basically calls the parent constructor passing it all the arguments ,that happens if dont write a constructorof our own.
+
+
+//class Animal {
+//  constructor(name){
+//	this.speed = 0;
+//	this.name = name;
+//}	
+//  run(speed){
+//	this.speed = speed;
+//	  console.log(`${this.name} runs with speed ${this.speed}`);
+//  }
+//
+//  stop(){
+//	this.speed = 0;
+//	  console.log(`${this.name} stands still `);
+//  }
+//}
+//
+//let animal = new Animal ("");
+//
+//class Rabbit extends Animal {
+//
+//	constructor(name,earlength,speed){
+//		super(speed);
+//		this.speed = 0;
+//		this.name = name;
+//		this.earlength = earlength;
+//	}
+//
+//hid(){
+//	console.log(`${this.name} hies`);
+//  }
+//  stop(){
+//	super.stop();
+//	this.hid();  
+//  }
+//}
+//
+//let rabbit = new Rabbit("white rabbit",10);
+//
+//constructor in inheriting classes must call super and do it befor using this.
+//
+//in javascript there is a distinction between a constructor function of an inheriting class
+//(so called derived constructor); and another function,A derived constructor has a special internal property
+//thats a special internal label
+//
+//that label affects its behavior with new;
+//
+//	*when regular function is executed with new ,it creates an empty object and assign it to this;
+//	but when a derived constructor runs,it doesnt do this,it expects the parent constructor to do this job
+//
+//so derived constructor must call super in order to execute its parrent base constructor,otherwise the object
+//for this wont be created,and we will get an error,
+//
+//for the rabbit constructor to work,it needs to call super befor using this.
+
+
+
+
+//	overriding class fields : a tricky note
+//class Animal {
+// name = "animal";
+// constructor(){
+//   console.log(this.name);
+// }
+//}
+//
+//class Rabbit extends Animal {
+// name = "rabbit";
+//}
+//new Animal();
+//new Rabbit();
+//
+//
+//in other words , the parent constructor always uses ots own field value,not the overdidden one,
+//
+//
+//class Animal {
+//   showName(){
+//	console.log("animal");
+//   }
+// constructor(){
+//   this.showName();
+// }
+//}
+//
+//class Rabbit extends Animal {
+//    showName(){
+//	console.log("rabbit");
+//    }
+//}
+//new Animal();
+//new Rabbit();
+//
+//
+//when the parent constructor is called in the derived class , it uses the overridden method,
+//but for class fields its not so.as said the parent constructor always uses the parent field.
+//
+//	why is there a difference?
+//	the reason is the field initialization oreder , the class field initialized:
+//	
+//	*befor constructor for the base class that doesnt extend  anything.
+//	*immediatly after super for the derived class,
+//
+//in our case , rabbit is the derived class , there is no constructor in it , as said previously, thats the 
+//same s if there wan an empty constructor with only super(..args)
+//
+//so new rabbit calls super , thus executing the parent constructor , and per the rule for derived class
+//only after that its class fields are initialized , at the time of the parent constructor executing,there 
+//are no rabbit class fields yet , thats why animal fields are used,
+//
+//this behavior only reveals itself if an overridden field is used in the parent constructor , then may be 
+//difficualt to understand whats going on ,
+//
+//
+//how it should technically work?when an object method runs , it gets the cuttent object as this,
+//if we call super.method then the engine needs to htet the method from the prototype of the current object
+//but how>?
+//
+//the engine knows the current object this, so it could get the parent method as this.proto.method
+//unforyaunatly sucj a naive solution wont work.
+
+//
+//	let animal = {
+//		name :"animal",
+//		eat() {
+//			console.log(`${this.name} eats`);
+//
+//		}
+//	}
+//
+//
+//	let rabbit = {
+//		__proto__ : animal,
+//		name : "rabbit",
+//		eat(){
+//			this.__proto__.eat.call(this);
+//		}
+//	}
+//
+//	let dog = {
+//		__proto__:rabbit,
+//		eat(){
+//
+//			this.__proto__.eat.call(this);
+//		}
+//
+//	}
+
+
+
+
+
+//at the line * we take eat from the prototype animal and call it in the context of the current object;
+//pese note that .call(this) is important here because a simle this.__proto__.eat() would execute parent eat 
+//in the context of the prototype no the current obect,
+
+//in both line the value of this is the current object , thats essential all object methods get 
+//the current objext as this not a prototype or something.
+//
+//so in both lines * and ** the value of this.__proto__ is exactly the same rabbit they both call rabbit.eat
+//without going up the chain in the endless loop,
+//
+//
+//
+//
+//	homeObject 
+//
+//
+//to provide the solution javascript adds one more special internal property for functions:home object
+//when a functions is specified as  a class or object method its homeobject property becomes that object,
+//	then super uses it to resolve the parent prototype and its methods,
+//
+//
+//
+//
+//
+//
+
+
+	let animal = {
+		name :"animal",
+		eat() {
+			console.log(`${this.name} eats`);
+
+		}
+	}
+
+
+	let rabbit = {
+		__proto__ : animal,
+		name : "rabbit",
+		eat(){
+			super.eat();
+
+		}
+
+	}
+
+	let dog = {
+		__proto__:rabbit,
+		name:"dog",
+		eat(){
+
+		  super.eat();
+		}
+
+	}
+
+
+
+		dog.eat();
 
 
 
