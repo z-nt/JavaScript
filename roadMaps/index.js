@@ -3252,6 +3252,269 @@ function f(arg){
 
 
 
+//		static properties and mthods 
+
+//we can also assign a method to the class as a whole.shuch methods are called static
+//in a class declaration they are prepended by static keyword
+
+//
+//	class User{
+//		static staticmethod (){
+//			console.log(this === User);
+//		}
+//	}
+//
+//
+////	User.staticmethod();
+//
+//
+////that actully does the same as assiging it as a property directly
+//
+//
+//
+//class A {}
+//	A.staticmethod = function () {
+//		console.log(this === A);
+//	}
+//
+//
+////A.staticmethod();
+//
+//
+// //the value of this in A.staticmethod call is the class constructor A itself (the object befor dot);
+//
+////static method are used to implement functions that belong to the class as a whole , but not to 
+////any particular object of if,
+//
+//
+////we have article object and need a function to compare them
+////a natural solution would be to add article.compare static method:
+//
+//
+//class Article {
+// constructor(title,date){
+//	this.title=title;
+//	 this.date = date;
+// }
+// static compare(articleA,articleB){
+//	return articleA.date - articleB.date;
+// }
+//}
+//
+//
+//let articles = [
+//	new Article("html",new Date(2019,1,1)),
+//	new Article("css",new Date(2019,0,1)),
+//	new Article("js",new Date(2019,11,1)),
+//];
+////console.log(articles );
+//
+////articles.sort(Article.compare);
+//
+////console.log(articles );
+//
+//
+////console.log(articles[0].title );
+////
+////
+////here article.compare method stands above articles,as a means to compare them.its not a method of an 
+////article , but rather of the whole class.
+////
+////another example would be a so-called factory method,
+////
+////	we need multiple ways to create an article
+////1-creat by given parameters (title, date);
+////2-create an empty article with todays date,
+////
+////
+////the first way can be implemented by the constructor , and for the sconde one we can make static method
+////of the class,
+////
+//
+//
+//class Article2 {
+//  constructor(title,date){
+//	this.title= title;
+//	this.date = date;
+//  }
+//
+//	static createTodays () {
+//	  return new this("to daye is digest",new Date());
+//	}
+//}
+//
+//let article2 = Article2.createTodays();
+//
+////console.log(article2);
+//
+//
+//now every time we need to create a todays digest,we can call article.createtodays once again
+//thats not a method of an article,but a method of the whole class.
+//
+//static methods are also in database-related classes to search/save/remove entries from database
+//
+//Article.remove({id:12345});
+//
+//
+//static methods arent available for individual objects
+//
+//static methods are callable on classes , not on individual objecy
+//
+//article.createtodays () error is not a function
+//
+//
+//
+//static properties 
+//
+//this is a recent addition to the language examples work in the recent chrome,
+//
+//
+//static properties are also possible , they look like regular class properties , but prepended by static
+//
+//class Article {
+//
+//	static publisher = "ilya kantor";
+//}
+//console.log(Article.publisher) ilya kantor
+//
+//
+//
+//that is the same as a direct assignment to Article
+//
+//Article.publisher = "ilya kantor";
+//
+//
+//inheritance of static properties and methods 
+//
+//
+//static properties and methods are inherited;
+//for instance Animal.compare and Animal.planet in the code below are inherited and accessible as rabbit.compare
+//and rabbit.planet
+//
+//
+//
+//
+
+//
+//class Animal{
+//  static planet = "earth";
+//
+//	constructor(name,speed){
+//	this.name = name;
+//	this.speed = speed;
+//	}
+//
+//
+//
+//	run(speed = 0 ){
+//		this.speed += speed;
+//		console.log(`${this.name} runs with speed ${this.speed} `);
+//	}
+//
+//  static compare(animalA , animalB){
+//	return animalA.speed - animalB.speed;
+//
+//  }
+//
+//
+//}
+//
+//
+//class Rabbit extends Animal{
+// hide(){
+//   console.log(`${this.name} hides`);
+// }
+//}
+//
+//
+//let rabbits = [
+//	new Rabbit("white rabbit",10),
+//	new Rabbit ("black rabbit",5)
+//]
+//
+//rabbits.sort(Rabbit.compare);
+//
+//
+//console.log(rabbits);
+//
+//console.log(Rabbit.planet);
+//
+//console.log(rabbits[0].run())
+//
+//
+//
+//now when we call rabbit.compare the inherited animal.compare will ne called;
+//how does it work ? again using prototype ,as you might have already guessed,extends gives Rabbit 
+//the prototype refrence to animal
+//
+//so rabbit extends animal creates two prototype refrence ;
+//1-rabbit function prototypally inherits from animal function
+//2-rabbit.prototype prototypally inherits from animal.prototype
+//
+//
+//as a result inheritance works both for regular and static methods.
+//
+//class Animal{};
+//
+//class Rabbit extends Animal {};
+//
+//console.log(Rabbit.__proto__ === Animal) true
+//console.log(Rabbit.prototype.__proto__ === Animal.prototype) true
+//
+//
+//
+//summary
+//
+//
+//static methods are used for the functionality that blongs to the class as a whole.it doesnt relate to a 
+//concrete class instance ;
+//
+//a method for comparision article.compare (artA , artB ) or a factory method article.createtodays
+//
+//they are labeled by the word static in class declaration.
+//
+//static properties are uses when we had like to store class level data, also not bound to an instancel
+//
+//
+//
+//
+//class Myclass{
+//	static property = "";
+//	static emethod(){};
+//
+//}
+//
+//
+//technically static declaration is the same as assigning to the class itself;
+//
+//
+//myclass.property = "";
+//myclass.method = "";
+//
+//
+//static properties and methods are inherited;
+//
+//
+//for class B extends A the prototype of the class B itself point to A ;
+//A.prototype = A ;
+//so if  a field is not bound B , the search continues in A;
+//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
