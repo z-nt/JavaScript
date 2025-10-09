@@ -3831,62 +3831,130 @@ class Toffee {
 //if we had like built-in  methods like map or filter to return regular arrays , we can return Array in 
 //Symbol.species like here ;
 
+//
+//class PowerArray extends Array {
+//	isEmpty(){
+//		return this.length === 0 ;
+//	}
+//
+////built-in methods will use this as the constructor 
+//	static get [Symbol.species](){
+//		return Array;
+//	}
+//}
+//
+//let arm = new PowerArray(1,2,5,10,50);
+//
+//	console.log(arm.isEmpty());
+//
+//
+//
+//filter creates new array using arr.constructor [symbol.species] as constructor 
+//let filterArm = arm.filter(item => item >=10);
+//
+//
+//	console.log(filterArm);
+//filter is not powerArray , but just a array;
+////	console.log(filterArm.isEmpty());
+//
+//
+//
+//as you can see , filter returns array, so the extended functionallity is not passed any further,
+//
+//	other collections work similary
+//
+//other collections , such as map and set , work alike,they also use symbol.species;
+//
+//
+//		no static inheritance in built-ins
+//
+//built-in    objects have their own static methods , for instance object.keys , array.isArray ,
+//as we already know , native classes extend each other,for instance array extends object;
+//
+//normally,when one class extends another,both static and non-static methods are inherited,
+//	that was thoroughly explained in the article ,
+//
+//
+//but built-in classes are an exception.they dont inherit statics from each other;
+//
+//for example both array and date inherit from object, so their instances have methods from 
+//object.prototype but array[prototype ]does not refrence object, so theres no for instance ,
+//Array.keys or date.keyes static method.
+//
+//
+//
+//
+//		Mixins 
+//
+//
+//in javascript we can only inherit from a single object.there can be only one [prototype ]for an object.
+//and a class may extend only one other class.
+//
+//but sometimes that feels limiting,
+//
+//	a mixin is a class containing methods that cen be used by other classes without a need      
+//	to inherit from it
+//
+//a mixin provides methods that implements a certain behavior , but we do not use it alone,we use it 
+//to add the behavior to other classes.
+//
 
-class PowerArray extends Array {
-	isEmpty(){
-		return this.length === 0 ;
-	}
 
-//built-in methods will use this as the constructor 
-	static get [Symbol.species](){
-		return Array;
+let sayhiMixin = {
+	sayhi(){
+		console.log(`say hi ${this.name}`);
+	},
+	saybye(){
+		console.log(`say bye: ${this.name}`);
 	}
 }
 
-let arm = new PowerArray(1,2,5,10,50);
 
-	console.log(arm.isEmpty());
-
-
-
-filter creates new array using arr.constructor [symbol.species] as constructor 
-let filterArm = arm.filter(item => item >=10);
+	class Users {
+		constructor(name){
+			this.name = name;
+		}
+	}
 
 
-	console.log(filterArm);
-filter is not powerArray , but just a array;
-//	console.log(filterArm.isEmpty());
+Object.assign(Users.prototype, sayhiMixin);
 
 
-
-as you can see , filter returns array, so the extended functionallity is not passed any further,
-
-	other collections work similary
-
-other collections , such as map and set , work alike,they also use symbol.species;
+new Users("kian").sayhi();
 
 
-		no static inheritance in built-ins
-
-built-in    objects have their own static methods , for instance object.keys , array.isArray ,
-as we already know , native classes extend each other,for instance array extends object;
-
-normally,when one class extends another,both static and non-static methods are inherited,
-	that was thoroughly explained in the article ,
+//theres no inheritance , but a simple method copying , so User may inherit from another class and also
+//include  the mixin to mix-in additional methods,like this:
 
 
-but built-in classes are an exception.they dont inherit statics from each other;
-
-for example both array and date inherit from object, so their instances have methods from 
-object.prototype but array[prototype ]does not refrence object, so theres no for instance ,
-Array.keys or date.keyes static method.
-
-
+let sayMix = {
+   say(phrase){
+	console.log(phrase);
+   }
+}
 
 
+let sayHiMix = {
+	__proto__:sayMix,
+
+	sayHi(){
+		super.say(`hello ${this.name}`);
+	},
+	sayBye(){
+		super.say(`Bye ${this.name}`);
+	}
+}
 
 
+class User2 {
+	constructor(name){
+		this.name = name;
+	}
+}
 
+Object.assign(User2.prototype,sayHiMix);
+
+new User2("mobin").sayHi();
 
 
 
