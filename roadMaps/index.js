@@ -3692,100 +3692,100 @@ class Toffee {
 //private should start with # they are only accessible from inside the class;
 
 
+//
+//class Tof2{
+//
+//	#waterLimit = 200;
+//
+//	#fixWaterAmount(value){
+//		if (value < 0 ) return 0;
+//		if(value > this.#waterLimit) return this.#waterLimit;	
+//
+//	}
+//
+//	setWaterAmount(value){
+//	this.#waterLimit = this.#fixWaterAmount(value);
+//	}
+//
+//}
+//
+//
+////let tof2 = new Tof2();
+//
+////tof2.#fixWaterAmount(124);
+///////tof2.#waterLimit = 2000;
+//
+//
+////on the language level # is a special sign that the field is private , we cant access it from outside 
+////or from inheriting classes;
+//
+////private fields do not confilict with public ones,we can have both private #waterAmound and public
+////waterAmount fields at the same time;
+//
+//
+//class Tof3{
+//	#waterAmount = 0 ; 
+//
+//	get waterAmount(){
+//		return this.#waterAmount;
+//	}
+//
+//	set waterAmount(value){
+//		if(value < 0) value = 0;
+//
+//		this.#waterAmount = value;
+//
+//	}
+//
+//
+//}
+//
+//let tof3 = new Tof3()
+//
+//tof3.waterAmount = 100;
+//
+//console.log(tof3.waterAmount);
+//
+//unlike protected ones , priver fields are enforced by the language itself,
+//but if we inherit from coffee then we will have no direct access to #waterAmount ,we will need to rely
+//on wateramount getter/setter;
+//
+//class Megamachin extends Coffeemchine{
+//	method(){
+//		console.log(this.#waterAmount) error can only access from cofeemachin
+//
+//	}
+//}
+//
+//in many senarios such limition is too server .if we extends a coffeemachine we may have 
+//legimitate reasone to access its internals.thats why protected fields are used more often,
+//	even though they are not supported by the language syntax
+//
+//
+//private fields are not avalilable as this[name];
+//
+//
+//with private fields thats impossible this[#name] doesnt work,
+//
+//
+//
+//
+//	summary
+//
+//in terms of oop , delimiting of the internal interface from the external interface is called
+//encapsulation,
+//
+//it gives the following benefits:
+//
+//
+//protecting for users , so that they dont shoot themselves in the foot
+//
+//
+//
+//
+//
 
-class Tof2{
-
-	#waterLimit = 200;
-
-	#fixWaterAmount(value){
-		if (value < 0 ) return 0;
-		if(value > this.#waterLimit) return this.#waterLimit;	
-
-	}
-
-	setWaterAmount(value){
-	this.#waterLimit = this.#fixWaterAmount(value);
-	}
-
-}
-
-
-//let tof2 = new Tof2();
-
-//tof2.#fixWaterAmount(124);
-/////tof2.#waterLimit = 2000;
-
-
-//on the language level # is a special sign that the field is private , we cant access it from outside 
-//or from inheriting classes;
-
-//private fields do not confilict with public ones,we can have both private #waterAmound and public
-//waterAmount fields at the same time;
-
-
-class Tof3{
-	#waterAmount = 0 ; 
-
-	get waterAmount(){
-		return this.#waterAmount;
-	}
-
-	set waterAmount(value){
-		if(value < 0) value = 0;
-
-		this.#waterAmount = value;
-
-	}
-
-
-}
-
-let tof3 = new Tof3()
-
-tof3.waterAmount = 100;
-
-console.log(tof3.waterAmount);
-
-unlike protected ones , priver fields are enforced by the language itself,
-but if we inherit from coffee then we will have no direct access to #waterAmount ,we will need to rely
-on wateramount getter/setter;
-
-class Megamachin extends Coffeemchine{
-	method(){
-		console.log(this.#waterAmount) error can only access from cofeemachin
-
-	}
-}
-
-in many senarios such limition is too server .if we extends a coffeemachine we may have 
-legimitate reasone to access its internals.thats why protected fields are used more often,
-	even though they are not supported by the language syntax
-
-
-private fields are not avalilable as this[name];
-
-
-with private fields thats impossible this[#name] doesnt work,
-
-
-
-
-	summary
-
-in terms of oop , delimiting of the internal interface from the external interface is called
-encapsulation,
-
-it gives the following benefits:
-
-
-protecting for users , so that they dont shoot themselves in the foot
-
-
-
-
-
-
-
+		Extending built-in calsses 
 
 
 
