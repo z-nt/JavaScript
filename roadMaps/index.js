@@ -3785,10 +3785,101 @@ class Toffee {
 //
 //
 
-		Extending built-in calsses 
+//		Extending built-in calsses 
+
+
+//built-in classes like Array , map and others are extendable also;
+
+//for instance here PowerArray inherits from the native Array;
+
+//class PowerArray extends Array {
+//   
+//	isEmpty(){
+//	   return this.length === 0 ;
+//	}
+//}
+//
+//let arrm = new PowerArray(1,2,5,10,50);
+//
+//console.log(arrm.isEmpty());
+//
+//
+//
+//let filterArr = arrm.filter(item => item >=10);
+//
+//console.log( filterArr);
+//
+////console.log(filterArr.isEmpty());
+//
+//built-in methods like filter , map and others - return new objects of exactly the inheited type
+//PowerArray . their internal implementation uses the objects constructor property for that.
+//
+//in the example above ,
+//
+//	arr.constructor === PowerArray;
+//
+//
+//when arr.filter() is called , it internally creates the new array of results using exactly
+//arr.constructor , not basic Array, thats actually very cool. because we can keep using PowerArray
+//methods further on the result;
+//
+//even more , we can customize that behavior.
+//
+//we can add a special static getter Symbol.species to the class,if it exists it should return the constructor
+//that javascript will use internally to create new entities in map , filter and so on,
+//
+//if we had like built-in  methods like map or filter to return regular arrays , we can return Array in 
+//Symbol.species like here ;
+
+
+class PowerArray extends Array {
+	isEmpty(){
+		return this.length === 0 ;
+	}
+
+//built-in methods will use this as the constructor 
+	static get [Symbol.species](){
+		return Array;
+	}
+}
+
+let arm = new PowerArray(1,2,5,10,50);
+
+	console.log(arm.isEmpty());
 
 
 
+filter creates new array using arr.constructor [symbol.species] as constructor 
+let filterArm = arm.filter(item => item >=10);
+
+
+	console.log(filterArm);
+filter is not powerArray , but just a array;
+//	console.log(filterArm.isEmpty());
+
+
+
+as you can see , filter returns array, so the extended functionallity is not passed any further,
+
+	other collections work similary
+
+other collections , such as map and set , work alike,they also use symbol.species;
+
+
+		no static inheritance in built-ins
+
+built-in    objects have their own static methods , for instance object.keys , array.isArray ,
+as we already know , native classes extend each other,for instance array extends object;
+
+normally,when one class extends another,both static and non-static methods are inherited,
+	that was thoroughly explained in the article ,
+
+
+but built-in classes are an exception.they dont inherit statics from each other;
+
+for example both array and date inherit from object, so their instances have methods from 
+object.prototype but array[prototype ]does not refrence object, so theres no for instance ,
+Array.keys or date.keyes static method.
 
 
 
