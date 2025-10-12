@@ -3962,6 +3962,88 @@ Object.assign(Users.prototype, sayhiMixin);
 //for is mostly used to iterate over sequences/collections , where a counter is used to keep track 
 //of all the elements in the sequence wherease while is mostly used to iterate uptil the point some
 //condition doesnt fail,
+//
+//an iterator is a javascript  object that implements the iterator protocol. 
+//
+//the iterator protocol is simpley a set of rules which must me be obeyed by an object in order for it to be 
+//called an iterator.
+//
+//the protocol states that the object must have a next() method. this method shall return an object with the 
+//following two properties.
+//
+//don- a boolean value indicating whether the iterator has reached its last value,
+//value- holds the next value in a given sequence,
+//
+//
+//
+//construct a function makeIterator that takes in an array and returns an iterator to iterate 
+//over it ,
+//
+//
+var unit8 = new Uint8Array([15,192,16]);
+
+
+for (var byte of unit8){
+	console.log(byte.toString(16));
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var numz = [1,5,16];
+
+var iter = makeIterator(numz);
+
+
+//console.log(iter.next());
+//console.log(iter.next());
+//console.log(iter.next());
+//console.log(iter.next());
+
+function makeIterator(arr) {
+	var i = 0;
+
+	return {
+		next : function () {
+			if (i > arr.length - 1 )
+				return {value:undefined , done:true};
+			return {value:arr[i++],done:false}
+		}
+
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	let nums = [1,2,3,4,5];
