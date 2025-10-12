@@ -3918,43 +3918,67 @@ let sayhiMixin = {
 
 
 Object.assign(Users.prototype, sayhiMixin);
-
-
-new Users("kian").sayhi();
+//new Users("kian").sayhi();
 
 
 //theres no inheritance , but a simple method copying , so User may inherit from another class and also
 //include  the mixin to mix-in additional methods,like this:
+//
+//
+//let sayMix = {
+//   say(phrase){
+//	console.log(phrase);
+//   }
+//}
+//
+//
+//let sayHiMix = {
+//	__proto__:sayMix,
+//
+//	sayHi(){
+//		super.say(`hello ${this.name}`);
+//	},
+//	sayBye(){
+//		super.say(`Bye ${this.name}`);
+//	}
+//}
+//
+//
+//class User2 {
+//	constructor(name){
+//		this.name = name;
+//	}
+//}
+//
+//Object.assign(User2.prototype,sayHiMix);
+//
+//new User2("mobin").sayHi();
+//
+//
+
+//			iterators , iterables and generators
 
 
-let sayMix = {
-   say(phrase){
-	console.log(phrase);
-   }
-}
+//for is mostly used to iterate over sequences/collections , where a counter is used to keep track 
+//of all the elements in the sequence wherease while is mostly used to iterate uptil the point some
+//condition doesnt fail,
 
 
-let sayHiMix = {
-	__proto__:sayMix,
+	let nums = [1,2,3,4,5];
 
-	sayHi(){
-		super.say(`hello ${this.name}`);
-	},
-	sayBye(){
-		super.say(`Bye ${this.name}`);
+	for(var i = 0 ; i < nums.length ; i++){
+//		console.log(nums[i]);
 	}
-}
 
 
-class User2 {
-	constructor(name){
-		this.name = name;
+	for (var som of nums){
+		console.log(som);
 	}
-}
 
-Object.assign(User2.prototype,sayHiMix);
 
-new User2("mobin").sayHi();
+
+
+
 
 
 
