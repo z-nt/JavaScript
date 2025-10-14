@@ -3980,111 +3980,97 @@ Object.assign(Users.prototype, sayhiMixin);
 //over it ,
 //
 //
-var unit8 = new Uint8Array([15,192,16]);
+//var unit8 = new Uint8Array([15,192,16]);
+//
+//for (
+//	//initialisation 
+//	var  = iter = unit8[symbol.iterator]() , 
+//	next = iter.next(),
+//	byte = next.value;
+//
+//	//iterative check
+//	!next.done;
+//
+//	//iterative expressions
+//	next= iter.next(),
+//	byte  = next.value;
+//
+//)
+//{
+//console.log(byte);
+//}
+//
+//
+//var numss = [1,2,3];
+//
+//var iter = numss[symbol.iterator](),
+//	next = iter.next(),
+//	num = next.value;
+//
+//while(!next.done){
+//	console.log(num);
+//
+//	next = iter.next();
+//	num = next.value;
+//}
+//
+//
+//for (var byte of unit8){
+//	console.log(byte.toString(16));
+//
+//}
+//
+//var numm = [1,4,15];
+//
+//var iter = makeItertator(nums);
+//
+//
+//
+//function makeIterartor(arr){
+//	var i = 0;
+//
+//	return {
+//	    next: function () {
+//		if(i > arr.length - 1 ){
+//			return {value:undefined , done:true}
+//		return {value:arr[i++] , done:false}
+//		}
+//	    }
+//	}
+//}
+//
+//var numz = [1,5,16];
+//
+//var iter = makeIterator(numz);
+//
+//
+////console.log(iter.next());
+////console.log(iter.next());
+////console.log(iter.next());
+////console.log(iter.next());
+//
+//function makeIterator(arr) {
+//	var i = 0;
+//
+//	return {
+//		next : function () {
+//			if (i > arr.length - 1 )
+//				return {value:undefined , done:true};
+//			return {value:arr[i++],done:false}
+//		}
+//
+//	}
+//}
 
 
-for (var byte of unit8){
-	console.log(byte.toString(16));
+//	let nums = [1,2,3,4,5];
 
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var numz = [1,5,16];
-
-var iter = makeIterator(numz);
-
-
-//console.log(iter.next());
-//console.log(iter.next());
-//console.log(iter.next());
-//console.log(iter.next());
-
-function makeIterator(arr) {
-	var i = 0;
-
-	return {
-		next : function () {
-			if (i > arr.length - 1 )
-				return {value:undefined , done:true};
-			return {value:arr[i++],done:false}
-		}
-
-	}
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	let nums = [1,2,3,4,5];
-
-	for(var i = 0 ; i < nums.length ; i++){
+//	for(var i = 0 ; i < nums.length ; i++){
 //		console.log(nums[i]);
-	}
+//	}
 
 
-	for (var som of nums){
-		console.log(som);
-	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//	for (var som of nums){
+//		console.log(som);
+//	}
 
