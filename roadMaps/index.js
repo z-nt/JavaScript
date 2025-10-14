@@ -4073,4 +4073,128 @@ Object.assign(Users.prototype, sayhiMixin);
 //	for (var som of nums){
 //		console.log(som);
 //	}
+//
+//
+//Number.prototype[Symbol.iterator] = function(){
+//	return this.toString()[Symbol.iterator]();
+//}
+//
+//numbers are non-iterable by default , however one can define ad @@iterator method 
+//on Number.prototype that returns their corresponding string versions iterator , and thus 
+//makes them iterable.
+//
+//we,ll show this example in a moment.
+//
+//so wasnt making iterable an easy task? 
+//
+//consider the problem of not being able to iterate over an object , like the one 
+//shown below
+//
+//var add = 12345;
+//
+//for (var n of add){
+//	console.log(typeof n);
+//}
+//
+
+//var o = {x:10, y:20 , z:30}
+
+
+//
+//the reason why we cant do so out of the box is apparent - the interpreter can,t guess which part of 
+//each property do we want , we want the key or do we want the value,
+//
+//isnt that quite a lot to guess?
+//
+//
+//	but fortunately , we can thell the interpreter , ourselves, what extactly do we want using 
+//	the static keys() and value() methods defined on Object.
+//
+//	values() returns an array containing all the individual values in the given object.this 
+//	excludes symbolic values.
+//
+//	keys() returns an array containing all the individual values in the given object , this 
+//	excludes symbolic keys,
+//
+//	and since what we get are arrays , we can right away use these methods in a for..of loop
+//	to iterate over the objects values or keys :whichever we want;
+//
+//
+//
+//	recall that arrays are iterable.
+//
+//
+//	consider the following examples.
+//	
+//	here we iterator over all the values in the object o : 
+//
+
+//	var o = {x:10,y:20,z:30}
+
+//	for (var v of Object.values(o)){
+//		console.log(v);
+//	}
+
+//	for (var k of Object.keys(o)){
+//		console.log(k);
+//	}
+
+//	for(var r of o){
+//		console.log(o[r]);
+//	}
+
+
+//With both these methods in mind, try solving the taks below;if you are able to solve em then you are 
+//damn good to go forward!
+
+
+//
+//
+//	the spread operator 
+//
+//the spread ooerator takes an sequence and converts it into indiviual elements as in the 
+//argument of a function or in the element of an array;
+//
+//the spread operator takes an iterable and converts it into individual elements.
+//
+//	the way it does this is that:
+//
+//	first it calls the iterator method defined on the iterable and gets an iterator our of it.
+//
+//	after this, it uses the iterator to retrieve the elements of the iterable one-by-one uptill the 
+//	point the done property remains false,
+//
+//
+//the spread operator works exactly how for..of does. its just that the loop puts each iterated 
+//value inside a variable,whereas the spread operator puts each value in another sequence,
+//
+
+
+
+//var arrr = [3,4,5];
+//	var arrt = [1,2,...arrr,6];
+//	console.log(arrt);
+
+
+		Generators
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
