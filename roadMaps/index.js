@@ -4179,11 +4179,39 @@ Object.assign(Users.prototype, sayhiMixin);
 		Generators
 
 
+anything that has the capability of defining a sequence is a generator.
+
+the anything referred to here can only be a function since all other data types cant define a sequence
+
+this is because only a function can be called.passed in configurable arguments and therefore produce 
+some output , no other data type can do this
+
+the following code shows a simple generator function.it takes an argument and generates a sequence 
+of positive integers upto that argument
 
 
 
+function positiveInts(n){
+	var i = 1;
+	var max = ( n < 1 || typeof n !== "number") ? 1 : n;
+	return {
+		next:function(){
+			if(i > max ) return {value:undefined, done:true}
+
+		return { value:i++ , done:false}
+		}
+	}
+}
+
+to be very precise the function takes in an argument and return an iterator object 
+that will go upto that argument number.
 
 
+
+the statement in line 5 checks for whether i has gone above max , and if it has , then 
+return the object {value:undefined , done:true}
+
+if we create a seq iterator using the function above , itll produce results shown as follows 
 
 
 
