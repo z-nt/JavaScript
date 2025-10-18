@@ -4320,45 +4320,154 @@ function getAllposInt(){
 //
 
 
-the next() method serves to resume executing inside a generator 
-the yield  keyword serves to pause executing inside a generator 
-
-surley , as we have seen uptill now , yield has got some extraordianry behavior when 
-dealt by the interpreter,most importantly , it pauses executing and puts its following expression 
-inside the value property of the corresponding next() iterator,
-
-
-each time an argument is provided to the next() method it replaces the whole 
-corresponding yield expression with that argument.
-
-
-
+//the next() method serves to resume executing inside a generator 
+//the yield  keyword serves to pause executing inside a generator 
+//
+//surley , as we have seen uptill now , yield has got some extraordianry behavior when 
+//dealt by the interpreter,most importantly , it pauses executing and puts its following expression 
+//inside the value property of the corresponding next() iterator,
+//
+//
+//each time an argument is provided to the next() method it replaces the whole 
+//corresponding yield expression with that argument.
+//
 
 
 
 
-function getName(name,fname ){
-	return name + fname;
-}
+////
+//
+//function getName(name,fname ){
+//	return name + fname;
+//}
+//
+//
+//let kian = getName("kian","nosratian");
+//
+//
+////console.log(kian);
+//
+//
+//
+//function *getNames(name,fname){
+//	yield  name + fname
+//	yield  fname + name
+//	yield  fname
+//}
+//
+//let erfan = getNames("erfan","nosratian");
+//
+//
+////console.log(erfan.next());
+////console.log(erfan.next());
+////console.log(erfan.next());
+////console.log(erfan.next());
+//
+//var m ;
+//
+//function *gen(){
+//	m = yield 30;
+//}
+//
+//var sen = gen();
+//
+//
+//
+//
+//
+//
 
 
-let kian = getName("kian","nosratian");
+	//		Advance Generators 
+//
+//
+//function* getPos(){
+//	for (let i = 1 ; true ; i++){
+//		yield i ;
+//	}
+//}
+//
+//let seq  = getPos();
+//
+//
+////console.log(seq.next());
+////console.log(seq.next());
+////console.log(seq.next());
+////console.log(seq.return("bye"));
+//
+//
+//
+//function* gen(){
+//	try {yield "foo";}
+//	catch(e){
+//		yield "Error";
+//	}
+//}
+//
+//let saz = gen();
+//
+////console.log(saz.throw());
+////console.log(saz.next());
+////console.log(saz.next());
+//
+//
+//function *zen (){
+//	var arr = [1,2,3];
+//	yield* arr;
+//}
+//
+//var arz = zen() ; 
+////console.log(arz.next());
+////console.log(arz.next());
+////console.log(arz.next());
+////console.log(arz.next());
+//
+//
+//function* wholnums() {
+//	for(var i = 1 ; i <=5  ; i++){
+//		yield i;
+//	}
+//}
+//
+//function* squareNums(){
+//	for(var i = 1 ,  s =1; s <= 50; i++ , s = i ** 2 ){
+//		yield s;
+//	}
+//}
+//
+//
+//function* cubeNums(){
+//	for(var i = 1 , c = 1 ; c <= 100; i++, c = i ** 3) {
+//		yield c ;
+//	}
+//}
+//
+//
+//function* getAll (){
+//	yield* wholnums();
+//	yield* squareNums();
+//	yield* cubeNums();
+//} 
+//
+//
+//var sem = getAll();
+//	
+//	console.log(sem.next());
+//	console.log(sem.next());
+//
+//	console.log("_____ ")
+//
+//
+//	console.log(sem.next());
+//	console.log(sem.next());
+//
+//
+//
+//	console.log("_____ ")
+//
+//	console.log(sem.next());
+//	console.log(sem.next());
+//
 
 
-//console.log(kian);
 
-
-
-function *getNames(name,fname){
-	yield  name + fname
-	yield  fname + name
-	yield  fname
-}
-
-let erfan = getNames("erfan","nosratian");
-
-
-console.log(erfan.next());
-console.log(erfan.next());
-console.log(erfan.next());
-console.log(erfan.next());
