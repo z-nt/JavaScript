@@ -4288,51 +4288,77 @@ function getAllposInt(){
 //
 //
 
-function * seq(){
-	yield 1 ;
-	yield 3 ;
-	yield 5 ;
+//function * seq(){
+//	yield 1 ;
+//	yield 3 ;
+//	yield 5 ;
+//
+//
+//}
+//
+//
+//let val = seq();
+//
+////console.log(val.next());
+////console.log(val.next());
+////console.log(val.next());
+//
+////console.log(val.next());
+//
+//
+////Each yield keyword defines the next value in the sequence ---and since we have three yield 
+////keywords we have three values in the sequence that are 1,3,5 ;
+//
+//
+//for (var numz of val){
+//	console.log(numz)
+//
+//}
+//
+//
+//the for of loop is able to iterate over the invokeed generator function;
+//
 
 
+the next() method serves to resume executing inside a generator 
+the yield  keyword serves to pause executing inside a generator 
+
+surley , as we have seen uptill now , yield has got some extraordianry behavior when 
+dealt by the interpreter,most importantly , it pauses executing and puts its following expression 
+inside the value property of the corresponding next() iterator,
+
+
+each time an argument is provided to the next() method it replaces the whole 
+corresponding yield expression with that argument.
+
+
+
+
+
+
+
+function getName(name,fname ){
+	return name + fname;
 }
 
 
-let val = seq();
-
-//console.log(val.next());
-//console.log(val.next());
-//console.log(val.next());
-
-//console.log(val.next());
+let kian = getName("kian","nosratian");
 
 
-//Each yield keyword defines the next value in the sequence ---and since we have three yield 
-//keywords we have three values in the sequence that are 1,3,5 ;
+//console.log(kian);
 
 
-for (var numz of val){
-	console.log(numz)
 
+function *getNames(name,fname){
+	yield  name + fname
+	yield  fname + name
+	yield  fname
 }
 
-
-the for of loop is able to iterate over the invokeed generator function;
-
+let erfan = getNames("erfan","nosratian");
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+console.log(erfan.next());
+console.log(erfan.next());
+console.log(erfan.next());
+console.log(erfan.next());
