@@ -4175,43 +4175,153 @@ Object.assign(Users.prototype, sayhiMixin);
 //	var arrt = [1,2,...arrr,6];
 //	console.log(arrt);
 
+//
+//		Generators
+//
+//
+//anything that has the capability of defining a sequence is a generator.
+//
+//the anything referred to here can only be a function since all other data types cant define a sequence
+//
+//this is because only a function can be called.passed in configurable arguments and therefore produce 
+//some output , no other data type can do this
+//
+//the following code shows a simple generator function.it takes an argument and generates a sequence 
+//of positive integers upto that argument
+//
+//
+//
+//function positiveInts(n){
+//	var i = 1;
+//	var max = ( n < 1 || typeof n !== "number") ? 1 : n;
+//	return {
+//		next:function(){
+//			if(i > max ) return {value:undefined, done:true}
+//
+//		return { value:i++ , done:false}
+//		}
+//	}
+//}
+//
+//to be very precise the function takes in an argument and return an iterator object 
+//that will go upto that argument number.
+//
+//
+//
+//the statement in line 5 checks for whether i has gone above max , and if it has , then 
+//return the object {value:undefined , done:true}
+//
+//if we create a seq iterator using the function above , itll produce results shown as follows 
+//
 
-		Generators
+
+//function posInt(n){
+//	var i = 1; 
+//
+//	var max = (n < 1 || typeof n !== "number" ? 1 : n );
+//
+//	return{
+//	   next:function(){
+//		if(i > max) return {value:undefined,done:true};
+//
+//		return{value:i++,done:false}
+//	}
+//	}
+//}
+//
+//
+//let pos1 = posInt(3);
+//
+//console.log(pos1.next()); //just this number is in the memory
+//console.log(pos1.next()); // now this 
+//console.log(pos1.next());/// and next this 
+//console.log(pos1.next());
+//
 
 
-anything that has the capability of defining a sequence is a generator.
-
-the anything referred to here can only be a function since all other data types cant define a sequence
-
-this is because only a function can be called.passed in configurable arguments and therefore produce 
-some output , no other data type can do this
-
-the following code shows a simple generator function.it takes an argument and generates a sequence 
-of positive integers upto that argument
+//compliation with old way 
 
 
-
-function positiveInts(n){
-	var i = 1;
-	var max = ( n < 1 || typeof n !== "number") ? 1 : n;
-	return {
-		next:function(){
-			if(i > max ) return {value:undefined, done:true}
-
-		return { value:i++ , done:false}
-		}
+function getAllposInt(){
+	const result = [];
+	for (let i  = 1 ; i < 100000 ; i++){
+		result.push(i);  /// the memory is full
 	}
+	
+
+	return result;
+
 }
 
-to be very precise the function takes in an argument and return an iterator object 
-that will go upto that argument number.
+
+//just one value it will store in a memeory at once ;
+//*only one value is in memory at a time 
+
+
+//it can be continue untill infinity 
+//*can continue identifinitely
+
+
+//these values calculated just when it needs to be;
+//* value are only computed when they are actully needed;
 
 
 
-the statement in line 5 checks for whether i has gone above max , and if it has , then 
-return the object {value:undefined , done:true}
 
-if we create a seq iterator using the function above , itll produce results shown as follows 
+//A generator function defines not just a sequence , but rather an iterable sequence;
+//
+//this means that whatever the generator return has the ability to be iterated over , as well;
+//
+//now these iterable sequences arent like array , string or whatever that otherwise exist all at a time 
+//instead they are created on the go ony by one , they do not exist all at a time ;
+//
+//
+//in technical terms , we refer to this as lazy evaluation ,
+//
+//
+//
+//lazy evaluation means that values are created only when they are needed, not all at once,
+//
+//	Generators are function that returns iterators to lazily generate iterable sequences;
+//
+//
+//
+//
+
+function * seq(){
+	yield 1 ;
+	yield 3 ;
+	yield 5 ;
+
+
+}
+
+
+let val = seq();
+
+//console.log(val.next());
+//console.log(val.next());
+//console.log(val.next());
+
+//console.log(val.next());
+
+
+//Each yield keyword defines the next value in the sequence ---and since we have three yield 
+//keywords we have three values in the sequence that are 1,3,5 ;
+
+
+for (var numz of val){
+	console.log(numz)
+
+}
+
+
+the for of loop is able to iterate over the invokeed generator function;
+
+
+
+
+
 
 
 
