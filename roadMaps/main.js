@@ -146,3 +146,93 @@
 ////
 ////this is test 
 ////
+
+let events = [
+	{
+	  name:"add",
+	  id:1,
+	  isValid:true, 
+	},
+	{
+	  name:"remove",
+	  id :2,
+	  isValid:false,
+	}
+];
+let input = "object";
+
+//function CreateObject(name){
+//	this.name = name;
+//}
+//function checkUserEvent(e){
+//	
+//	if(e.name == "add"){
+//		const newObject = CreateObject(intpu);
+//	}
+//	if(e.name == "remove"){
+//		throw new Error("object removed");
+//	}
+//		return newObject;
+//}
+//
+//
+//
+
+
+function createObjectManager (){
+const objects = [];
+
+	function handelEvent(e,name){
+		if (e ==="add"){
+			function ObjectInstance (name){
+				this.name = name;
+			}
+			const newobj = new ObjectInstance (name);
+			objects.push(newobj);
+			return newobj;
+		}else if (e === "remove"){
+
+		return false;
+
+		}
+
+	}
+	return handleEvent;
+}
+
+
+createObjectManager();
+
+
+const newUser = handleEvent("add", "kian");
+	console.log(newUser);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
