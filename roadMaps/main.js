@@ -1,3 +1,5 @@
+import {sayHi} from "./index.js";
+
 ////
 ////
 ////
@@ -178,37 +180,40 @@ let input = "object";
 //
 //
 
+//
+//function createObjectManager (){
+//const objects = [];
+//
+//	function handelEvent(e,name){
+//		if (e ==="add"){
+//			function ObjectInstance (name){
+//				this.name = name;
+//			}
+//			const newobj = new ObjectInstance (name);
+//			objects.push(newobj);
+//			return newobj;
+//		}else if (e === "remove"){
+//
+//		return false;
+//
+//		}
+//
+//	}
+//	return handleEvent;
+//}
+//
+//
+//createObjectManager();
+//
+//
+//const newUser = handleEvent("add", "kian");
+//	console.log(newUser);
+//
 
-function createObjectManager (){
-const objects = [];
-
-	function handelEvent(e,name){
-		if (e ==="add"){
-			function ObjectInstance (name){
-				this.name = name;
-			}
-			const newobj = new ObjectInstance (name);
-			objects.push(newobj);
-			return newobj;
-		}else if (e === "remove"){
-
-		return false;
-
-		}
-
-	}
-	return handleEvent;
-}
+console.log(sayHi);
 
 
-createObjectManager();
-
-
-const newUser = handleEvent("add", "kian");
-	console.log(newUser);
-
-
-
+sayHi("kian");
 
 
 
