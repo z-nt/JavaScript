@@ -4481,55 +4481,59 @@
 ////
 ////To name some (for historical reasons):
 //
-export function sayHi(user){
- console.log(`hello ${user}`);
-}
+//export function sayHi(user){
+// console.log(`hello ${user}`);
+//}
+//
+//downloadin external moduke scripts doesnt block HTML proccessing , they load in parallel in other resources.
+//module scripts wait until the html document is fully ready and then run ,
+//relative order of scripts is maintained : scripts that go first in document execute first ,
+//	as a side effect , module scripts alwayes "see" the fully loaded html-page , including html element blow
+//them .
+//
+//
+//
+//	<script type="module">
+//		object the script can "see" the button below 
+//	as modules are deferred , the script runs after the whole pages is loaded 
+//	</script>
+//
+//	<script >
+//		button is undefined , the script cant see elements 
+//	regular scripts run  immediatly , befor the rest of the page is proccessd 
+//
+//	</script>
+//
+//	
+//	<button>button </button>
+//	
+//
+//	to summarize , the core conceptes are : 
+//
+//	*1-A module is a file , to make import/export work,browsers needs <script type="module">.. 
+//	module have several differences:
+//	-deferred by default 
+//	-async works on inline scripts 
+//	-to load external scripts from another origin (domain/protocol/port), cors headers are needed.
+//	-duplicated scripts are ignored.
+//
+//	2-modules have their own,local top-lever scop and interchange functionality via import/export.
+//	3-modules always use strict.
+//	4-module code is executed only once.exports are created once and shared between imports.,
+//
+//	when we use modules , each modules immplements the functionality and exports it ,then we use import 
+//	to directly it where its needed, the browser loads and evalutaes the scripts automatically,
+//
+//	in production ,peaple often use bundlers such as webpack to bundle modules together  for performance,
+//
+//
+//
+//
 
-downloadin external moduke scripts doesnt block HTML proccessing , they load in parallel in other resources.
-module scripts wait until the html document is fully ready and then run ,
-relative order of scripts is maintained : scripts that go first in document execute first ,
-	as a side effect , module scripts alwayes "see" the fully loaded html-page , including html element blow
-them .
 
 
-
-	<script type="module">
-		object the script can "see" the button below 
-	as modules are deferred , the script runs after the whole pages is loaded 
-	</script>
-
-	<script >
-		button is undefined , the script cant see elements 
-	regular scripts run  immediatly , befor the rest of the page is proccessd 
-
-	</script>
-
-	
-	<button>button </button>
-	
-
-	to summarize , the core conceptes are : 
-
-	*1-A module is a file , to make import/export work,browsers needs <script type="module">.. 
-	module have several differences:
-	-deferred by default 
-	-async works on inline scripts 
-	-to load external scripts from another origin (domain/protocol/port), cors headers are needed.
-	-duplicated scripts are ignored.
-
-	2-modules have their own,local top-lever scop and interchange functionality via import/export.
-	3-modules always use strict.
-	4-module code is executed only once.exports are created once and shared between imports.,
-
-	when we use modules , each modules immplements the functionality and exports it ,then we use import 
-	to directly it where its needed, the browser loads and evalutaes the scripts automatically,
-
-	in production ,peaple often use bundlers such as webpack to bundle modules together  for performance,
-
-
-
-
-
+	road map of js is end
+ 
 
 
 
